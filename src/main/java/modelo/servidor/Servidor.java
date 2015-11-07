@@ -4,7 +4,7 @@ import java.util.List;
 
 import modelo.contenido.Contenido;
 
-public interface Servidor {
+public interface Servidor extends TokenServidor {
 
     String obtenerNombre();
 
