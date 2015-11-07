@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.op4j.Op;
 import org.op4j.functions.ExecCtx;
 import org.op4j.functions.IFunction;
@@ -21,6 +22,7 @@ import util.servidor.handler.AgregarHandler;
 import util.servidor.handler.AltaHandler;
 import util.servidor.handler.BajaHandler;
 import util.servidor.handler.BuscarHandler;
+import util.servidor.handler.EliminarHandler;
 import util.token.TokenUtil;
 
 public class ServidorImpl implements Servidor {
@@ -41,6 +43,7 @@ public class ServidorImpl implements Servidor {
             httpServer.createContext("/baja", new BajaHandler(this));
             httpServer.createContext("/buscar", new BuscarHandler(this));
             httpServer.createContext("/agregar", new AgregarHandler(this));
+            httpServer.createContext("/eliminar", new EliminarHandler(this));
             httpServer.setExecutor(null);
             httpServer.start();
         } catch (IOException e) {
@@ -88,7 +91,7 @@ public class ServidorImpl implements Servidor {
         result = Op.onList(contenidos).removeAllFalse(new IFunction<Contenido, Boolean>() {
             @Override
             public Boolean execute(Contenido input, ExecCtx ctx) throws Exception {
-                return input.obtenerTitulo().contains(subcadena);
+                return StringUtils.containsIgnoreCase(input.obtenerTitulo(), subcadena);
             }
         }).get();
 

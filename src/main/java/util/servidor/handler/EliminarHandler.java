@@ -14,11 +14,11 @@ import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.token.TokenUtil;
 
-public class AgregarHandler implements HttpHandler {
+public class EliminarHandler implements HttpHandler {
 
     private Servidor servidor;
 
-    public AgregarHandler(Servidor servidor) {
+    public EliminarHandler(Servidor servidor) {
         this.servidor = servidor;
     }
 
@@ -32,7 +32,7 @@ public class AgregarHandler implements HttpHandler {
             try {
                 String contenidoString = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "contenido");
                 Contenido contenido = JSONUtil.jsonToObject(contenidoString, ContenidoImpl.class);
-                servidor.agregar(contenido, token);
+                servidor.eliminar(contenido, token);
                 httpExchange.sendResponseHeaders(HttpStatus.SC_OK, 0);
             } catch (Exception e) {
                 httpExchange.sendResponseHeaders(HttpStatus.SC_BAD_REQUEST, 0);
