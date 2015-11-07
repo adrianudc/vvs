@@ -6,6 +6,6 @@ import modelo.servidor.impl.ServidorImpl;
 public class App {
 
     public static void main(String[] args) {
-        Servidor servidor = new ServidorImpl(8080);
+        Servidor servidor = new ServidorImpl("Servidor", 8080);
     }
 }

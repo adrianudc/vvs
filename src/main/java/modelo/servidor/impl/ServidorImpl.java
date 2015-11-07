@@ -33,8 +33,11 @@ public class ServidorImpl implements Servidor {
 
     private List<Contenido> contenidos;
 
-    public ServidorImpl(int puerto) {
+    private String nombre;
+
+    public ServidorImpl(String nombre, int puerto) {
         try {
+            this.nombre = nombre;
             tokens = Maps.newHashMap();
             contenidos = Lists.newArrayList();
 
@@ -57,7 +60,7 @@ public class ServidorImpl implements Servidor {
 
     @Override
     public String obtenerNombre() {
-        return null;
+        return nombre;
     }
 
     @Override
