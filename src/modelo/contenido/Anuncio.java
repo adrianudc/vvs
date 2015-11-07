@@ -9,10 +9,6 @@ public class Anuncio implements Contenido{
 
     private final int duracion = 5;
 
-    public Anuncio(){
-
-    };
-
     @Override
     public String obtenerTitulo(){
         return titulo;
