@@ -22,7 +22,11 @@ dependencies {
     compile 'com.google.guava:guava:18.0'
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'commons-io:commons-io:2.4'
-
+    compile 'org.op4j:op4j:1.2'
+    // JSON
+    compile 'com.fasterxml.jackson.core:jackson-core:2.6.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.2'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.2'
     // Test
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

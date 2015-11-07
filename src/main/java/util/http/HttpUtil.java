@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 
 import com.google.common.collect.Maps;
+import com.sun.net.httpserver.HttpExchange;
 
 public class HttpUtil {
 
@@ -30,6 +31,12 @@ public class HttpUtil {
         return result;
     }
 
+    public static String getQueryValueFromHttpExchange(HttpExchange httpExchange, String key) {
+        String query = httpExchange.getRequestURI().getQuery();
+        String value = HttpUtil.queryToMap(query).get(key);
+        return value;
+    }
+
     public static HttpURLConnection sendGet(String url) throws IOException {
         URL obj = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
@@ -44,6 +51,8 @@ public class HttpUtil {
         connection.setRequestMethod(HttpPost.METHOD_NAME);
         connection.setDoInput(true);
         connection.setDoOutput(true);
+        connection.setConnectTimeout(150000);
+        connection.setReadTimeout(150000);
         return connection;
     }
 

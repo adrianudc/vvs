@@ -20,8 +20,7 @@ public class BajaHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String query = httpExchange.getRequestURI().getQuery();
-        String token = HttpUtil.queryToMap(query).get("token");
+        String token = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "token");
 
         if (servidor.comprobarToken(token)) {
             servidor.baja(token);
