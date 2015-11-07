@@ -23,8 +23,10 @@ import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.servidor.ServidorTestUtil;
 import util.servidor.ServidorUtil;
+import util.token.TokenUtil;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ServidorTest {
 
@@ -74,6 +76,26 @@ public class ServidorTest {
     }
 
     @Test
+    public void servidorAgregarContenidoTestResultOK() throws IOException {
+        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        Contenido contenido = new ContenidoImpl("Test", 23);
+        params.put("contenido", JSONUtil.objectTOJSON(contenido));
+        connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
+        int response = connection.getResponseCode();
+        assertEquals(HttpStatus.SC_OK, response);
+    }
+
+    @Test
+    public void servidorAgregarContenidoTestForbidden() throws IOException {
+        Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
+        Contenido contenido = new ContenidoImpl("Test", 23);
+        params.put("contenido", JSONUtil.objectTOJSON(contenido));
+        connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
+        int response = connection.getResponseCode();
+        assertEquals(HttpStatus.SC_FORBIDDEN, response);
+    }
+
+    @Test
     public void servidorBuscarTestEmptyResult() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
         params.put("subCadena", "test");
@@ -91,13 +113,58 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
 
         String jsonResponse = IOUtils.toString(connection.getInputStream(), Charsets.UTF_8.name());
-        List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.JSONToObjectList(jsonResponse, ContenidoImpl[].class));
+        List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists.newArrayList(ServidorUtil.obtenerPublicidad());
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void servidorAgregarYBuscarTestResultOK() throws IOException {
+        Contenido contenido1 = new ContenidoImpl("Test", 23);
+        agregarContenido(contenido1);
+        Contenido contenido2 = new ContenidoImpl("Test2", 24);
+        agregarContenido(contenido2);
+        Contenido contenido3 = new ContenidoImpl("Test3", 30);
+        agregarContenido(contenido3);
+        Contenido contenido4 = new ContenidoImpl("Test4", 32);
+        agregarContenido(contenido4);
+        Contenido contenido5 = new ContenidoImpl("Test5", 16);
+        agregarContenido(contenido5);
+        Contenido contenido6 = new ContenidoImpl("Test6", 13);
+        agregarContenido(contenido6);
+        Contenido contenido7 = new ContenidoImpl("Test7", 23);
+        agregarContenido(contenido7);
+
+        Map<String, String> params = Maps.newHashMap();
+        params.put("subCadena", "Test");
+        connection = HttpUtil.sendPost("http://localhost:8080/buscar", params);
+        int response = connection.getResponseCode();
+        assertEquals(HttpStatus.SC_OK, response);
+
+        String jsonResponse = IOUtils.toString(connection.getInputStream(), Charsets.UTF_8.name());
+        List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
+        List<Contenido> expected = Lists
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
+                        ServidorUtil.obtenerPublicidad(), contenido5, contenido6, contenido7);
+
+        assertEquals(expected, result);
+
+        List<Contenido> wrongExpected = Lists
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
+                        contenido5, contenido6, contenido7);
+
+        assertNotEquals(wrongExpected, result);
     }
 
     private static String obtenerTokenAltaServidor() throws IOException {
         connection = HttpUtil.sendGet("http://localhost:8080/alta");
         return IOUtils.toString(connection.getInputStream(), Charsets.UTF_8.name());
+    }
+
+    private static void agregarContenido(Contenido contenido) throws IOException {
+        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        params.put("contenido", JSONUtil.objectTOJSON(contenido));
+        connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
+        connection.getResponseCode();
     }
 }

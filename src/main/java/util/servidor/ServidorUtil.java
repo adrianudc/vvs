@@ -9,7 +9,7 @@ import modelo.token.Token;
 
 public class ServidorUtil {
 
-    public static final Contenido PUBLICIDAD = new ContenidoImpl("Test", 23);
+    public static final Contenido PUBLICIDAD = new ContenidoImpl("Publicidad", 23);
 
     private static SecureRandom random = new SecureRandom();
 

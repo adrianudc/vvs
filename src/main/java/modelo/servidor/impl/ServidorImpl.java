@@ -17,6 +17,7 @@ import modelo.contenido.Contenido;
 import modelo.servidor.Servidor;
 import modelo.token.Token;
 import util.servidor.ServidorUtil;
+import util.servidor.handler.AgregarHandler;
 import util.servidor.handler.AltaHandler;
 import util.servidor.handler.BajaHandler;
 import util.servidor.handler.BuscarHandler;
@@ -39,6 +40,7 @@ public class ServidorImpl implements Servidor {
             httpServer.createContext("/alta", new AltaHandler(this));
             httpServer.createContext("/baja", new BajaHandler(this));
             httpServer.createContext("/buscar", new BuscarHandler(this));
+            httpServer.createContext("/agregar", new AgregarHandler(this));
             httpServer.setExecutor(null);
             httpServer.start();
         } catch (IOException e) {
@@ -69,9 +71,7 @@ public class ServidorImpl implements Servidor {
 
     @Override
     public void agregar(Contenido contenido, String token) {
-        if (token.equals(TokenUtil.ADMIN_TOKEN)) {
-            this.contenidos.add(contenido);
-        }
+        this.contenidos.add(contenido);
     }
 
     @Override
