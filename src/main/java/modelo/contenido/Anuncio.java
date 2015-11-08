@@ -6,26 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Anuncio implements Contenido{
-
-    private final String titulo = "PUBLICIDAD";
-
-    private final int duracion = 5;
+public class Anuncio extends ContenidoImpl{
 
     private List<Contenido> listaReproduccion = Lists.newArrayList();
 
     public Anuncio(){
+        super("PUBLICIDAD", 5);
         listaReproduccion.add(this);
-    }
-
-    @Override
-    public String obtenerTitulo() {
-        return titulo;
-    }
-
-    @Override
-    public int obtenerDuracion() {
-        return duracion;
     }
 
     @Override
@@ -36,10 +23,10 @@ public class Anuncio implements Contenido{
 
     @Override
     public List<Contenido> buscar(String cadena){
-        if(cadena.equals(titulo)) {
+        if(cadena.equals(obtenerTitulo())) {
             return listaReproduccion;
         }
-        else return new ArrayList<Contenido>();
+        else return Lists.newArrayList();
     }
 
     @Override
