@@ -102,8 +102,8 @@ public class ServidorImpl implements Servidor {
         if (mToken == null) {
             Contenido publicidad = ServidorUtil.obtenerPublicidad();
             result.add(0, publicidad);
-            
-            for (int i = 5; i < result.size() - 1; i += 5) {
+
+            for (int i = 4; i < result.size(); i += 4) {
                 result.add(i, publicidad);
             }
         } else {

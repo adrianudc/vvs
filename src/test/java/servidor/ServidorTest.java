@@ -153,14 +153,16 @@ public class ServidorTest {
         String jsonResponse = buscarContenido("Test");
         List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists
-                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
-                        ServidorUtil.obtenerPublicidad(), contenido5, contenido6, contenido7);
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3,
+                        ServidorUtil.obtenerPublicidad(), contenido4, contenido5, contenido6,
+                        ServidorUtil.obtenerPublicidad(), contenido7);
 
         assertEquals(expected, result);
 
         List<Contenido> wrongExpected = Lists
-                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
-                        contenido5, contenido6, contenido7);
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3,
+                        ServidorUtil.obtenerPublicidad(), contenido4, contenido5, contenido6,
+                        contenido7, ServidorUtil.obtenerPublicidad());
 
         assertNotEquals(wrongExpected, result);
     }
@@ -185,8 +187,9 @@ public class ServidorTest {
         String jsonResponse = buscarContenido("Test");
         List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists
-                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
-                        ServidorUtil.obtenerPublicidad(), contenido5, contenido6, contenido7);
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3,
+                        ServidorUtil.obtenerPublicidad(), contenido4, contenido5, contenido6,
+                        ServidorUtil.obtenerPublicidad(), contenido7);
 
         assertEquals(expected, result);
 
@@ -198,8 +201,8 @@ public class ServidorTest {
         jsonResponse = buscarContenido("Test");
         result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         expected = Lists
-                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido5,
-                        ServidorUtil.obtenerPublicidad(), contenido6, contenido7);
+                .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3,
+                        ServidorUtil.obtenerPublicidad(), contenido5, contenido6, contenido7);
 
         assertEquals(expected, result);
     }
