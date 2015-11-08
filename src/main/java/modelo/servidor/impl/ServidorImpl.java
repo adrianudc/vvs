@@ -108,6 +108,9 @@ public class ServidorImpl implements Servidor {
             }
         } else {
             TokenUtil.incrementarContador(mToken);
+            if (mToken.getContador() >= 10) {
+                tokens.remove(mToken.getValor());
+            }
         }
 
         return result;
