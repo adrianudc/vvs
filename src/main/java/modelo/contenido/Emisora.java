@@ -3,8 +3,6 @@ package modelo.contenido;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Emisora extends ContenidoImpl{
@@ -33,7 +31,7 @@ public class Emisora extends ContenidoImpl{
 
     @Override
     public List<Contenido> buscar(String cadena){
-        List<Contenido> resultados = new ArrayList<Contenido>();
+        List<Contenido> resultados = Lists.newArrayList();
         for (Contenido contenido: listaReproduccion ){
             if(contenido.obtenerTitulo().contains(cadena)){
                 resultados.add(contenido);

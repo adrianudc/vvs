@@ -1,10 +1,9 @@
 package contenido;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
 import modelo.contenido.Anuncio;
 import modelo.contenido.Contenido;
-
+import org.junit.Test;
 import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 

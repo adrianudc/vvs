@@ -4,8 +4,6 @@ package modelo.contenido;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Cancion extends ContenidoImpl{
@@ -28,7 +26,7 @@ public class Cancion extends ContenidoImpl{
         if(cadena.equals(obtenerTitulo())) {
             return listaReproduccion;
         }
-        else return new ArrayList<Contenido>();
+        else return Lists.newArrayList();
     }
 
     @Override
