@@ -1,14 +1,38 @@
 package modelo.contenido;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-import java.util.List;
+
+/**
+ * Tercera clase especefica que extiende la clase ContenidoImpl.
+ **/
 
 public class Emisora extends ContenidoImpl{
 
+    /**
+     * La lista de reproduccion contiene los diferentes Contenidos de la emisora.
+     * A diferencia de las clases Cancion y Anuncio, no contiene a su propia
+     * instancia de Emisora.
+     **/
+
+    /**
+     * La duracion en la clase Emisora es la suma de las duraciones de los contenidos
+     * de su lista de reproduccion.
+     **/
+
     private List<Contenido> listaReproduccion;
 
+
+    /**
+     * Emisora tiene dos constructores. El primero recibe unicamente el titulo de la Emisora
+     * y crea una lista vacia.
+     * El segundo recibe una lista de Contenidos como parametro.
+     * Ambos contructores inicializan duracion a 0. El segundo contructor recorre la lista que
+     * se la ha pasado y suma las duraciones de sus Contenidos a la duracion de la Emisora.
+     **/
     @JsonCreator
     public Emisora(@JsonProperty("titulo") String titulo){
         super(titulo, 0);
@@ -29,6 +53,12 @@ public class Emisora extends ContenidoImpl{
         return listaReproduccion;
     }
 
+
+    /**
+     * Devuelve un lista de los Contenidos en la lista de reproduccion
+     * cuyo titulo contiene la cadena.
+     **/
+
     @Override
     public List<Contenido> buscar(String cadena){
         List<Contenido> resultados = Lists.newArrayList();
@@ -40,6 +70,13 @@ public class Emisora extends ContenidoImpl{
         return resultados;
     }
 
+    /**
+     * Inserta un nuevo Contenido en la posicion siguiente al Contenido
+     * predecesor si este esta presente en la lista de reproduccion, o bien
+     * se inserta al final de la lista si no lo esta.
+     * Despues de insertar, suma la duracion del nuevo Contenido a la de la Emisora.
+     **/
+
     @Override
     public void agregar(Contenido contenido, Contenido predecesor){
         if(listaReproduccion.contains(predecesor)) {
@@ -48,6 +85,12 @@ public class Emisora extends ContenidoImpl{
         else listaReproduccion.add(contenido);
         setDuracion(contenido.obtenerDuracion() + obtenerDuracion());
     }
+
+    /**
+     * Elimina el contenido de la lista de reproduccion si esta presente y resta su duracion a la
+     * de la Emisora.
+     * No hace nada si no esta presente.
+     **/
 
     @Override
     public void eliminar(Contenido contenido){
@@ -58,4 +101,22 @@ public class Emisora extends ContenidoImpl{
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Emisora emisora = (Emisora) o;
+
+        return !(listaReproduccion != null ? !listaReproduccion.equals(emisora.listaReproduccion) : emisora.listaReproduccion != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (listaReproduccion != null ? listaReproduccion.hashCode() : 0);
+        return result;
+    }
 }

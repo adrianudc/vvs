@@ -1,14 +1,17 @@
 package contenido;
 
-import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.Before;
 import java.util.List;
 
-import modelo.contenido.Cancion;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.google.common.collect.Lists;
+
 import modelo.contenido.Anuncio;
-import modelo.contenido.Emisora;
+import modelo.contenido.Cancion;
 import modelo.contenido.Contenido;
+import modelo.contenido.Emisora;
+
 import static junit.framework.TestCase.assertEquals;
 
 public class EmisoraTest {
@@ -19,6 +22,10 @@ public class EmisoraTest {
         Anuncio anuncio;
         List<Contenido> resultadosBuscados;
 
+        /**
+         * Inicializa los elementos comunes entre tests.
+         **/
+
         @Before
         public void setUP(){
             emisora = new Emisora("EmisoraPrueba");
@@ -28,6 +35,12 @@ public class EmisoraTest {
             resultadosBuscados = Lists.newArrayList();
         }
 
+
+        /**
+         * Prueba el metodo de agregar contenido, comprobando que la duracion
+         * se suma correctamente y que los elementos se insertan en las posiciones
+         * adecuadas.
+         **/
 
         @Test
         public void TestAgregarContenido(){
@@ -44,6 +57,11 @@ public class EmisoraTest {
             assertEquals(anuncio, emisora.obtenerListaReproduccion().get(1));
         }
 
+        /**
+         * Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene
+         * la cadena que se pasa o lista vacia si ninguno la contiene.
+         **/
+
         @Test
         public void TestBuscarContenido(){
             emisora.agregar(cancion, null);
@@ -54,6 +72,11 @@ public class EmisoraTest {
             assertEquals(resultadosBuscados, emisora.buscar("CancionPrueba"));
             assertEquals(Lists.newArrayList(), emisora.buscar("Test"));
         }
+
+        /**
+         * Prueba el metodo eliminar, comprobando que se resta correctamente la duracion
+         * de la Emisora y que los elementos se eliminan adecuadamente.
+         **/
 
         @Test
         public void TestEliminarContenido(){
