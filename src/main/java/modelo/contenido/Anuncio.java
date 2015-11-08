@@ -1,5 +1,8 @@
 package modelo.contenido;
 
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,24 +12,34 @@ public class Anuncio implements Contenido{
 
     private final int duracion = 5;
 
+    private List<Contenido> listaReproduccion = Lists.newArrayList();
+
+    public Anuncio(){
+        listaReproduccion.add(this);
+    }
+
     @Override
-    public String obtenerTitulo(){
+    public String obtenerTitulo() {
         return titulo;
     }
 
     @Override
-    public int obtenerDuracion(){
+    public int obtenerDuracion() {
         return duracion;
     }
 
     @Override
     public List<Contenido> obtenerListaReproduccion(){
-        return Arrays.asList(this);
+
+        return listaReproduccion;
     }
 
     @Override
     public List<Contenido> buscar(String cadena){
-        return Arrays.asList(this);
+        if(cadena.equals(titulo)) {
+            return listaReproduccion;
+        }
+        else return new ArrayList<Contenido>();
     }
 
     @Override
@@ -34,5 +47,4 @@ public class Anuncio implements Contenido{
 
     @Override
     public void eliminar(Contenido contenido){};
-
 }

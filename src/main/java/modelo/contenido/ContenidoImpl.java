@@ -12,7 +12,7 @@ public class ContenidoImpl implements Contenido {
 
     private final String titulo;
 
-    private final int duracion;
+    private int duracion;
 
     @JsonCreator
     public ContenidoImpl(@JsonProperty("titulo") String titulo, @JsonProperty("duracion") int duracion) {
@@ -48,6 +48,10 @@ public class ContenidoImpl implements Contenido {
     @Override
     public void eliminar(Contenido contenido) {
 
+    }
+
+    public void setDuracion(int duracion){
+        this.duracion = duracion;
     }
 
     @Override
