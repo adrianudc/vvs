@@ -27,7 +27,9 @@ import util.servidor.ServidorUtil;
 import util.token.TokenUtil;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ServidorTest {
 
@@ -148,7 +150,7 @@ public class ServidorTest {
         Contenido contenido7 = new ContenidoImpl("Test7", 23);
         agregarContenido(contenido7);
 
-        String jsonResponse = buscarContenido("Test", false);
+        String jsonResponse = buscarContenido("Test");
         List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists
                 .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
@@ -180,7 +182,7 @@ public class ServidorTest {
         Contenido contenido7 = new ContenidoImpl("Test7", 23);
         agregarContenido(contenido7);
 
-        String jsonResponse = buscarContenido("Test", false);
+        String jsonResponse = buscarContenido("Test");
         List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists
                 .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido4,
@@ -193,7 +195,7 @@ public class ServidorTest {
         connection = HttpUtil.sendPost("http://localhost:8080/eliminar", params);
         connection.getResponseCode();
 
-        jsonResponse = buscarContenido("Test", false);
+        jsonResponse = buscarContenido("Test");
         result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         expected = Lists
                 .newArrayList(ServidorUtil.obtenerPublicidad(), contenido1, contenido2, contenido3, contenido5,
@@ -229,15 +231,42 @@ public class ServidorTest {
         response = connection.getResponseCode();
         assertEquals(HttpStatus.SC_OK, response);
 
-        String jsonResponse = buscarContenido("http://localhost:8081/buscar", "Test", false);
+        String jsonResponse = buscarContenido("http://localhost:8081/buscar", "Test", null, false);
         List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         List<Contenido> expected = Lists.newArrayList(ServidorUtil.obtenerPublicidad(), contenido1);
         assertEquals(expected, result);
 
-        jsonResponse = buscarContenido("http://localhost:8082/buscar", "othertest", false);
+        jsonResponse = buscarContenido("http://localhost:8082/buscar", "othertest", null, false);
         result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
         expected = Lists.newArrayList(ServidorUtil.obtenerPublicidad(), contenido2, contenido3);
         assertEquals(expected, result);
+    }
+
+    @Test
+    public void servidorBuscarConCaducidadDeToken() throws IOException {
+        String token = obtenerTokenAltaServidor();
+        String jsonResponse = buscarContenido("Test", token); // Token value: 1
+
+        List<ContenidoImpl> result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
+        assertFalse(result.contains(ServidorUtil.obtenerPublicidad()));
+
+        buscarContenido("Test", token);
+        buscarContenido("Test", token);
+        buscarContenido("Test", token);
+        buscarContenido("Test", token); // Token value: 5
+        buscarContenido("Test", token);
+        buscarContenido("Test", token);
+        buscarContenido("Test", token);
+        buscarContenido("Test", token);
+        buscarContenido("Test", token); // Token value: 10
+
+        result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
+        assertFalse(result.contains(ServidorUtil.obtenerPublicidad()));
+
+        jsonResponse = buscarContenido("Test", token); // Token value: 10
+
+        result = Lists.newArrayList(JSONUtil.jsonToObject(jsonResponse, ContenidoImpl[].class));
+        assertTrue(result.contains(ServidorUtil.obtenerPublicidad()));
     }
 
     // Static methods
@@ -254,14 +283,21 @@ public class ServidorTest {
         connection.getResponseCode();
     }
 
-    private static String buscarContenido(String subCadena, boolean useAdmin) throws IOException {
-        return buscarContenido("http://localhost:8080/buscar", subCadena, useAdmin);
+    private static String buscarContenido(String subCadena) throws IOException {
+        return buscarContenido("http://localhost:8080/buscar", subCadena, null, false);
     }
 
-    private static String buscarContenido(String url, String subCadena, boolean useAdmin) throws IOException {
+    private static String buscarContenido(String subCadena, String token) throws IOException {
+        return buscarContenido("http://localhost:8080/buscar", subCadena, token, false);
+    }
+
+    private static String buscarContenido(String url, String subCadena, String token, boolean useAdminToken) throws
+            IOException {
         Map<String, String> params = Maps.newHashMap();
-        if (useAdmin) {
+        if (useAdminToken) {
             params.put("token", TokenUtil.ADMIN_TOKEN);
+        } else if (token != null) {
+            params.put("token", token);
         }
 
         params.put("subCadena", subCadena);
