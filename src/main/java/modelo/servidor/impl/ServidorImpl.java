@@ -50,7 +50,7 @@ public class ServidorImpl implements Servidor {
             httpServer.setExecutor(null);
             httpServer.start();
         } catch (IOException e) {
-            System.out.println("Error trying to create server");
+            System.out.println("Error trying to create server: " + e.getMessage());
         }
     }
 

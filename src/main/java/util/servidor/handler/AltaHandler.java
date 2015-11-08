@@ -6,11 +6,11 @@ import java.io.OutputStream;
 import org.apache.http.HttpStatus;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import modelo.servidor.Servidor;
+import util.servidor.BaseHandler;
 
-public class AltaHandler implements HttpHandler {
+public class AltaHandler extends BaseHandler {
 
     private Servidor servidor;
 
@@ -19,7 +19,7 @@ public class AltaHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public void handleRequest(HttpExchange httpExchange) throws IOException {
         String token = servidor.alta();
         System.out.println("Generated token: " + token);
         httpExchange.sendResponseHeaders(HttpStatus.SC_OK, token.length());

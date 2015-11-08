@@ -1,4 +1,4 @@
-package modelo.contenido;
+package modelo.contenido.impl;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import modelo.contenido.Contenido;
 
 /**
  * Clase que implementa la interfaz Contenido, contiene los elementos comunes al resto de implementaciones,
@@ -62,7 +64,7 @@ public class ContenidoImpl implements Contenido {
     public void eliminar(Contenido contenido) {
     }
 
-    public void setDuracion(int duracion){
+    public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
 
@@ -72,7 +74,7 @@ public class ContenidoImpl implements Contenido {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || !(o instanceof ContenidoImpl)) {
             return false;
         }
 

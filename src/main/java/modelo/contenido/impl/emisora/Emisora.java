@@ -1,4 +1,4 @@
-package modelo.contenido;
+package modelo.contenido.impl.emisora;
 
 import java.util.List;
 
@@ -6,11 +6,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 
-/**
- * Tercera clase especefica que extiende la clase ContenidoImpl.
- **/
+import modelo.contenido.Contenido;
+import modelo.contenido.impl.ContenidoImpl;
 
-public class Emisora extends ContenidoImpl{
+public class Emisora extends ContenidoImpl {
 
     /**
      * La lista de reproduccion contiene los diferentes Contenidos de la emisora.
@@ -25,7 +24,6 @@ public class Emisora extends ContenidoImpl{
 
     private List<Contenido> listaReproduccion;
 
-
     /**
      * Emisora tiene dos constructores. El primero recibe unicamente el titulo de la Emisora
      * y crea una lista vacia.
@@ -34,25 +32,25 @@ public class Emisora extends ContenidoImpl{
      * se la ha pasado y suma las duraciones de sus Contenidos a la duracion de la Emisora.
      **/
     @JsonCreator
-    public Emisora(@JsonProperty("titulo") String titulo){
+    public Emisora(@JsonProperty("titulo") String titulo) {
         super(titulo, 0);
         this.listaReproduccion = Lists.newArrayList();
     }
 
     @JsonCreator
-    public Emisora(@JsonProperty("titulo") String titulo, @JsonProperty("listaReproduccion") List<Contenido> listaReproduccion){
+    public Emisora(@JsonProperty("titulo") String titulo,
+            @JsonProperty("listaReproduccion") List<Contenido> listaReproduccion) {
         super(titulo, 0);
         this.listaReproduccion = listaReproduccion;
-        for(Contenido contenido: listaReproduccion){
+        for (Contenido contenido : listaReproduccion) {
             setDuracion(contenido.obtenerDuracion() + obtenerDuracion());
         }
     }
 
     @Override
-    public List<Contenido> obtenerListaReproduccion(){
+    public List<Contenido> obtenerListaReproduccion() {
         return listaReproduccion;
     }
-
 
     /**
      * Devuelve un lista de los Contenidos en la lista de reproduccion
@@ -60,10 +58,10 @@ public class Emisora extends ContenidoImpl{
      **/
 
     @Override
-    public List<Contenido> buscar(String cadena){
+    public List<Contenido> buscar(String cadena) {
         List<Contenido> resultados = Lists.newArrayList();
-        for (Contenido contenido: listaReproduccion ){
-            if(contenido.obtenerTitulo().contains(cadena)){
+        for (Contenido contenido : listaReproduccion) {
+            if (contenido.obtenerTitulo().contains(cadena)) {
                 resultados.add(contenido);
             }
         }
@@ -78,11 +76,12 @@ public class Emisora extends ContenidoImpl{
      **/
 
     @Override
-    public void agregar(Contenido contenido, Contenido predecesor){
-        if(listaReproduccion.contains(predecesor)) {
+    public void agregar(Contenido contenido, Contenido predecesor) {
+        if (listaReproduccion.contains(predecesor)) {
             listaReproduccion.add(listaReproduccion.indexOf(predecesor) + 1, contenido);
+        } else {
+            listaReproduccion.add(contenido);
         }
-        else listaReproduccion.add(contenido);
         setDuracion(contenido.obtenerDuracion() + obtenerDuracion());
     }
 
@@ -93,8 +92,8 @@ public class Emisora extends ContenidoImpl{
      **/
 
     @Override
-    public void eliminar(Contenido contenido){
-        if(listaReproduccion.contains(contenido)) {
+    public void eliminar(Contenido contenido) {
+        if (listaReproduccion.contains(contenido)) {
             listaReproduccion.remove(contenido);
             setDuracion(obtenerDuracion() - contenido.obtenerDuracion());
         }
@@ -103,13 +102,21 @@ public class Emisora extends ContenidoImpl{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        if (!super.equals(o)) {
+            return false;
+        }
 
         Emisora emisora = (Emisora) o;
 
-        return !(listaReproduccion != null ? !listaReproduccion.equals(emisora.listaReproduccion) : emisora.listaReproduccion != null);
+        return !(listaReproduccion != null ?
+                !listaReproduccion.equals(emisora.listaReproduccion) :
+                emisora.listaReproduccion != null);
 
     }
 

@@ -5,12 +5,12 @@ import java.io.IOException;
 import org.apache.http.HttpStatus;
 
 import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 
 import modelo.servidor.Servidor;
 import util.http.HttpUtil;
+import util.servidor.BaseHandler;
 
-public class BajaHandler implements HttpHandler {
+public class BajaHandler extends BaseHandler {
 
     private Servidor servidor;
 
@@ -19,7 +19,7 @@ public class BajaHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public void handleRequest(HttpExchange httpExchange) throws IOException {
         String token = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "token");
 
         if (servidor.comprobarToken(token)) {

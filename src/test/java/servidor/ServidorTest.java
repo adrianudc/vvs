@@ -16,7 +16,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import modelo.contenido.Contenido;
-import modelo.contenido.ContenidoImpl;
+import modelo.contenido.impl.ContenidoImpl;
 import modelo.servidor.Servidor;
 import modelo.servidor.impl.ServidorBackup;
 import modelo.servidor.impl.ServidorImpl;

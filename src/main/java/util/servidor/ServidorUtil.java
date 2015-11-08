@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 import modelo.contenido.Contenido;
-import modelo.contenido.Anuncio;
+import modelo.contenido.impl.track.Anuncio;
 import modelo.token.Token;
 
 public class ServidorUtil {

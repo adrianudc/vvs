@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
-import modelo.contenido.Anuncio;
 import modelo.contenido.Contenido;
+import modelo.contenido.impl.track.Anuncio;
 
 import static junit.framework.TestCase.assertEquals;
 
