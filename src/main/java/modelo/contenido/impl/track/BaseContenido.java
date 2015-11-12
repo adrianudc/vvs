@@ -24,7 +24,7 @@ public class BaseContenido extends ContenidoImpl {
     /**
      * Devuelve la lista de reproduccion si la cadena esta contenida en el titulo
      * de la cancion. Devuelve una lista vacia en caso contrario.
-     **/
+     */
 
     @Override
     public List<Contenido> buscar(String subcadena) {

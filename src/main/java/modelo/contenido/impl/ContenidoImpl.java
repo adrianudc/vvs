@@ -13,7 +13,7 @@ import modelo.contenido.Contenido;
 /**
  * Clase que implementa la interfaz Contenido, contiene los elementos comunes al resto de implementaciones,
  * como los atributos titulo y duracion, asi como los metodos obtenerTitulo y obtenerDuracion.
- **/
+ */
 
 public class ContenidoImpl implements Contenido {
 
@@ -40,7 +40,7 @@ public class ContenidoImpl implements Contenido {
     /**
      * Los metodos obtenerListaReproduccion y buscar devuelven nulo en la implementacion general,
      * dado que esta no contiene el atributo listaReproduccion.
-     **/
+     */
 
     @Override
     public List<Contenido> obtenerListaReproduccion() {
@@ -54,7 +54,7 @@ public class ContenidoImpl implements Contenido {
 
     /**
      * Los metodos agregar y eliminar no hacen nada en la implementacion general.
-     **/
+     */
 
     @Override
     public void agregar(Contenido contenido, Contenido predecesor) {

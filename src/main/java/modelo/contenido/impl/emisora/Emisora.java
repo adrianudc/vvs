@@ -15,12 +15,12 @@ public class Emisora extends ContenidoImpl {
      * La lista de reproduccion contiene los diferentes Contenidos de la emisora.
      * A diferencia de las clases Cancion y Anuncio, no contiene a su propia
      * instancia de Emisora.
-     **/
+     */
 
     /**
      * La duracion en la clase Emisora es la suma de las duraciones de los contenidos
      * de su lista de reproduccion.
-     **/
+     */
 
     private List<Contenido> listaReproduccion;
 
@@ -30,7 +30,7 @@ public class Emisora extends ContenidoImpl {
      * El segundo recibe una lista de Contenidos como parametro.
      * Ambos contructores inicializan duracion a 0. El segundo contructor recorre la lista que
      * se la ha pasado y suma las duraciones de sus Contenidos a la duracion de la Emisora.
-     **/
+     */
     @JsonCreator
     public Emisora(@JsonProperty("titulo") String titulo) {
         super(titulo, 0);
@@ -55,7 +55,7 @@ public class Emisora extends ContenidoImpl {
     /**
      * Devuelve un lista de los Contenidos en la lista de reproduccion
      * cuyo titulo contiene la cadena.
-     **/
+     */
 
     @Override
     public List<Contenido> buscar(String subcadena) {
@@ -73,7 +73,7 @@ public class Emisora extends ContenidoImpl {
      * predecesor si este esta presente en la lista de reproduccion, o bien
      * se inserta al final de la lista si no lo esta.
      * Despues de insertar, suma la duracion del nuevo Contenido a la de la Emisora.
-     **/
+     */
 
     @Override
     public void agregar(Contenido contenido, Contenido predecesor) {
@@ -89,7 +89,7 @@ public class Emisora extends ContenidoImpl {
      * Elimina el contenido de la lista de reproduccion si esta presente y resta su duracion a la
      * de la Emisora.
      * No hace nada si no esta presente.
-     **/
+     */
 
     @Override
     public void eliminar(Contenido contenido) {
