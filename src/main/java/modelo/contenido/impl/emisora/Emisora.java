@@ -58,10 +58,10 @@ public class Emisora extends ContenidoImpl {
      **/
 
     @Override
-    public List<Contenido> buscar(String cadena) {
+    public List<Contenido> buscar(String subcadena) {
         List<Contenido> resultados = Lists.newArrayList();
         for (Contenido contenido : listaReproduccion) {
-            if (contenido.obtenerTitulo().contains(cadena)) {
+            if (contenido.obtenerTitulo().contains(subcadena)) {
                 resultados.add(contenido);
             }
         }

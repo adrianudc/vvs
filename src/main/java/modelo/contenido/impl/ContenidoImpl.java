@@ -48,7 +48,7 @@ public class ContenidoImpl implements Contenido {
     }
 
     @Override
-    public List<Contenido> buscar(String cadena) {
+    public List<Contenido> buscar(String subcadena) {
         return null;
     }
 

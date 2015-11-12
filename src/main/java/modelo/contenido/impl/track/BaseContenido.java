@@ -27,8 +27,8 @@ public class BaseContenido extends ContenidoImpl {
      **/
 
     @Override
-    public List<Contenido> buscar(String cadena) {
-        return StringUtils.containsIgnoreCase(obtenerTitulo(), cadena) ?
+    public List<Contenido> buscar(String subcadena) {
+        return StringUtils.containsIgnoreCase(obtenerTitulo(), subcadena) ?
                 Lists.<Contenido>newArrayList(this) :
                 Lists.<Contenido>newArrayList();
     }

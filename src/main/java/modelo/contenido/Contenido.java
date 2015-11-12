@@ -26,7 +26,7 @@ public interface Contenido {
      * cuyo titulo contiene la cadena.
      **/
 
-    List<Contenido> buscar(String cadena);
+    List<Contenido> buscar(String subcadena);
 
     /**
      * Inserta un nuevo Contenido en la posicion siguiente al Contenido
