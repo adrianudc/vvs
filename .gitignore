@@ -5,3 +5,13 @@ build
 .idea
 target
 *.iml
+
+docs/*.aux
+docs/*.toc
+docs/*.pdf
+docs/*.lof
+docs/*.bbl
+docs/*.blg
+docs/*.log
+docs/*.synctex.gz
+docs/*.synctex.gz

@@ -1,0 +1,176 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This document is based on the template: Large Colored Title Article %
+%                                         Version 1.1 (25/11/12)      %
+%                                                                     %
+% The template was downloaded from: http://www.LaTeXTemplates.com     %
+%                                                                     %
+% Original author:                                                    %
+% Frits Wenneker (http://www.howtotex.com)                            %
+%                                                                     %
+% License:                                                            %
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/) %
+%                                                                     %
+% Authors of this version:                                             %
+% Adrian Quintas Garcia              %
+% Yuriy Mischenko              %
+%                                                                     %
+% Original licensing terms are maintained                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[DIV=calc,paper=a4,fontsize=11pt,onecolumn]{scrartcl}	 % A4 paper and 11pt font size
+
+\usepackage[galician]{babel} % Galician language/hyphenation
+\usepackage[utf8]{inputenc}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+\usepackage[hang,small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{fix-cm}	 % Custom font sizes - used for the initial letter in the document
+
+\usepackage{sectsty} % Enables custom section titles
+\allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+
+\usepackage{fancyhdr} % Needed to define custom headers/footers
+\pagestyle{fancy} % Enables the custom headers/footers
+\usepackage{lastpage} % Used to determine the number of pages in the document (for "Page X of Total")
+
+% Headers - all currently empty
+\lhead{}
+\chead{}
+\rhead{}
+
+% Footers
+\lfoot{\textsc{vvs-liña-base}}
+\cfoot{}
+\rfoot{\footnotesize Páxina \thepage\ de \pageref{LastPage}} % "Page 1 of 2"
+
+\renewcommand{\headrulewidth}{0.0pt} % No header rule
+\renewcommand{\footrulewidth}{0.4pt} % Thin footer rule
+
+\definecolor{UDC}{RGB}{206,0,124}
+\definecolor{DarkUDC}{rgb}{0.75,0.75,0.75}
+\definecolor{LightUDC}{RGB}{128,128,128}
+
+\usepackage{lettrine} % Package to accentuate the first letter of the text
+\newcommand{\initial}[1]{ % Defines the command and style for the first letter
+\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\color{UDC}
+{\textsf{#1}}}{}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\usepackage{titling} % Allows custom title configuration
+
+\newcommand{\HorRule}{\color{UDC} \rule{\linewidth}{1pt}} % Defines the pink horizontal rule around the title
+
+\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{20}{20} \usefont{OT1}{phv}{b}{n} \color{DarkUDC} \selectfont} % Horizontal rule before the title
+
+\title{LIÑA BASE} % Your article title
+
+\posttitle{\par\end{flushleft}\vskip 0.5em} % Whitespace under the title
+
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkUDC}} % Author font configuration
+
+\author{Título proxecto: Práctica \\
+	Ref. proxecto: Verificación y validación de software}
+
+\postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{Black} % Configuration for the institution name
+\par\end{flushleft}\HorRule} % Horizontal rule after the title
+
+\date{\sffamily Validación e Verificación de Software} % Add a date here if you would like one to appear underneath the title block
+
+%----------------------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+            allcolors=UDC}
+
+\usepackage{array}
+\usepackage{colortbl}
+
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hint}[1]{\begin{quote}\itshape #1 \end{quote}}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+\thispagestyle{fancy} % Enabling the custom headers/footers for the first page 
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\vspace*{1cm}
+
+\begin{center}
+\small \sffamily
+\begin{tabular}{c|c|c}
+Data de aprobación & Control de versións & Observacións \\ \hline
+& & \\ \hline
+& & \\ \hline
+& & \\
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Obxectivos}
+
+\hint{En este documento se detallarán las especificaciones para la ejecución del plan de pruebas.}
+
+\section{Alcance e difusión}
+
+\hint{Este documento estará presente en el repositorio del proyecto para cualquier persona que quiere ejecutar el plan de pruebas.}
+
+\section{Especificación de probas}
+
+\hint{Debe facerse referencia aos documentos onde se recollan as especificacións
+  funcionais e non funcionais que se van a someter a proba. Estas
+  especificacións tomaranse coma especificacións de proba, é dicir, as
+  especificacións de proba non deben ser diferentes das especificacións usadas
+  polos equipos de desenvolvemento.}
+
+\section{Incumprimentos de especificación}
+
+\subsection{Incumprimentos de especificacións funcionais}
+
+\hint{Se considerará un incumplimento de especificación cualquier funcionalidad que no presente la salida esperada a través de la especificación de requisitos.}
+
+\subsection{Incumprimentos de especificacións non funcionais}
+
+\subsubsection{Seguridad}
+
+\hint{El proyecto estará limitado por el uso de Tokens de usuario. Estos Tokens no podrán ser generados por el usuario y deben ser validados en el servidor.}
+
+\subsubsection{Fiabilidad}
+
+\hint{Los datos deben ser consistentes ante múltiples llamadas paralelas.}
+
+\subsubsection{Rendimiento}
+
+\hint{En caso de un gran número de peticiones, se debería agregar nuevos servidores y balancear la carga de peticiones.}
+
+\section{Política de modificacións}
+
+\hint{La línea base será actualizada ante la falta o errores de especificación.}
+
+\section{Outros aspectos de interese}
+
+\hint{No procede.}
+
+\end{document}
