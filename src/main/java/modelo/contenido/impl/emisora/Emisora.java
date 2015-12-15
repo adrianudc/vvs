@@ -1,13 +1,12 @@
 package modelo.contenido.impl.emisora;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.ContenidoImpl;
+
+import java.util.List;
 
 public class Emisora extends ContenidoImpl {
 
@@ -98,32 +97,5 @@ public class Emisora extends ContenidoImpl {
             setDuracion(obtenerDuracion() - contenido.obtenerDuracion());
         }
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-
-        Emisora emisora = (Emisora) o;
-
-        return !(listaReproduccion != null ?
-                !listaReproduccion.equals(emisora.listaReproduccion) :
-                emisora.listaReproduccion != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (listaReproduccion != null ? listaReproduccion.hashCode() : 0);
-        return result;
     }
 }

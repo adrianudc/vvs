@@ -9,12 +9,24 @@ task wrapper(type: Wrapper) {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'cobertura'
 
 sourceCompatibility = 1.7
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.saliman:gradle-cobertura-plugin:2.2.4'
+    }
+}
 
 repositories {
     mavenCentral()
 }
+
 
 dependencies {
     // Commons
@@ -32,3 +44,12 @@ dependencies {
     // Test
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }
+
+cobertura {
+    coverageFormats = ['html', 'xml']
+    coverageIgnoreTrivial = true
+    coverageIgnores = ['org.slf4j.Logger.*']
+    coverageReportDir = new File("$buildDir/reports/cobertura")
+}
+
+test.finalizedBy(project.tasks.cobertura)
