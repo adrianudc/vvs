@@ -9,9 +9,15 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
+/**
+ *
+ */
 public class CancionTest {
 
-    public Cancion cancion = new Cancion("CancionPrueba", 180);
+    /**
+     *
+     */
+    private Cancion cancion = new Cancion("CancionPrueba", 180);
 
 
     /**
@@ -20,7 +26,7 @@ public class CancionTest {
      */
 
     @Test
-    public void TestObtenerListaReproduccion(){
+    public void testObtenerListaReproduccion() {
         List<Contenido> listaEsperada = Lists.newArrayList();
         listaEsperada.add(cancion);
         assertEquals(listaEsperada, cancion.obtenerListaReproduccion());
@@ -33,7 +39,7 @@ public class CancionTest {
      */
 
     @Test
-    public void TestBuscar(){
+    public void testBuscar() {
         List<Contenido> listaEsperada = Lists.newArrayList();
         listaEsperada.add(cancion);
         assertEquals(listaEsperada, cancion.buscar("CancionPrueba"));

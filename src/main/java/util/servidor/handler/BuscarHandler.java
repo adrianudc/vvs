@@ -1,29 +1,37 @@
 package util.servidor.handler;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
-
-import org.apache.http.HttpStatus;
-
 import com.sun.net.httpserver.HttpExchange;
-
 import modelo.contenido.Contenido;
 import modelo.servidor.Servidor;
+import org.apache.http.HttpStatus;
 import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.servidor.BaseHandler;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+
+/**
+ *
+ */
 public class BuscarHandler extends BaseHandler {
 
+    /**
+     *
+     */
     private Servidor servidor;
 
-    public BuscarHandler(Servidor servidor) {
+    /**
+     *
+     * @param servidor -
+     */
+    public BuscarHandler(final Servidor servidor) {
         this.servidor = servidor;
     }
 
     @Override
-    public void handleRequest(HttpExchange httpExchange) throws IOException {
+    public void handleRequest(final HttpExchange httpExchange) throws IOException {
         String token = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "token");
         String subCadena = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "subCadena");
 

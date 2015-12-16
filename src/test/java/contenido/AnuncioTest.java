@@ -9,10 +9,15 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
-
+/**
+ *
+ */
 public class AnuncioTest {
 
-    Anuncio anuncio = new Anuncio();
+    /**
+     *
+     */
+    private Anuncio anuncio = new Anuncio();
 
     /**
      * Comprueba que el metodo obtenerListaReproduccion devuelve correctamente
@@ -20,7 +25,7 @@ public class AnuncioTest {
      */
 
     @Test
-    public void TestObtenerListaReproduccion(){
+    public void testObtenerListaReproduccion() {
 
         List<Contenido> listaEsperada = Lists.newArrayList();
         listaEsperada.add(anuncio);
@@ -33,7 +38,7 @@ public class AnuncioTest {
      */
 
     @Test
-    public void TestBuscar(){
+    public void testBuscar() {
         List<Contenido> listaEsperada = Lists.newArrayList();
         listaEsperada.add(anuncio);
         assertEquals(listaEsperada, anuncio.buscar("PUBLICIDAD"));

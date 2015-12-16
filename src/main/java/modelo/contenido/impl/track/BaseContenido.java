@@ -1,18 +1,24 @@
 package modelo.contenido.impl.track;
 
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.ContenidoImpl;
+import org.apache.commons.lang.StringUtils;
 
+import java.util.List;
+
+/**
+ *
+ */
 public class BaseContenido extends ContenidoImpl {
 
-    public BaseContenido(@JsonProperty("titulo") String titulo, @JsonProperty("duracion") int duracion) {
+    /**
+     *
+     * @param titulo -
+     * @param duracion -
+     */
+    public BaseContenido(@JsonProperty("titulo")final String titulo, @JsonProperty("duracion")final int duracion) {
         super(titulo, duracion);
     }
 
@@ -27,9 +33,11 @@ public class BaseContenido extends ContenidoImpl {
      */
 
     @Override
-    public List<Contenido> buscar(String subcadena) {
-        return StringUtils.containsIgnoreCase(obtenerTitulo(), subcadena) ?
-                Lists.<Contenido>newArrayList(this) :
+    public List<Contenido> buscar(final String subcadena) {
+        return StringUtils.containsIgnoreCase(obtenerTitulo(), subcadena)
+                ?
+                Lists.<Contenido>newArrayList(this)
+                :
                 Lists.<Contenido>newArrayList();
     }
 }

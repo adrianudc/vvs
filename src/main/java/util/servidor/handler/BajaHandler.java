@@ -1,25 +1,33 @@
 package util.servidor.handler;
 
-import java.io.IOException;
-
-import org.apache.http.HttpStatus;
-
 import com.sun.net.httpserver.HttpExchange;
-
 import modelo.servidor.Servidor;
+import org.apache.http.HttpStatus;
 import util.http.HttpUtil;
 import util.servidor.BaseHandler;
 
+import java.io.IOException;
+
+/**
+ *
+ */
 public class BajaHandler extends BaseHandler {
 
+    /**
+     *
+     */
     private Servidor servidor;
 
-    public BajaHandler(Servidor servidor) {
+    /**
+     *
+     * @param servidor -
+     */
+    public BajaHandler(final Servidor servidor) {
         this.servidor = servidor;
     }
 
     @Override
-    public void handleRequest(HttpExchange httpExchange) throws IOException {
+    public void handleRequest(final HttpExchange httpExchange) throws IOException {
         String token = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "token");
 
         if (servidor.comprobarToken(token)) {

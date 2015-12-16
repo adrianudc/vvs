@@ -1,41 +1,52 @@
 package modelo.servidor.impl;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.sun.net.httpserver.HttpServer;
+import modelo.contenido.Contenido;
+import modelo.servidor.Servidor;
+import modelo.token.Token;
+import org.apache.commons.lang.StringUtils;
+import org.op4j.Op;
+import org.op4j.functions.ExecCtx;
+import org.op4j.functions.IFunction;
+import util.servidor.ServidorUtil;
+import util.servidor.handler.*;
+import util.token.TokenUtil;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
-import org.op4j.Op;
-import org.op4j.functions.ExecCtx;
-import org.op4j.functions.IFunction;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.sun.net.httpserver.HttpServer;
-
-import modelo.contenido.Contenido;
-import modelo.servidor.Servidor;
-import modelo.token.Token;
-import util.servidor.ServidorUtil;
-import util.servidor.handler.AgregarHandler;
-import util.servidor.handler.AltaHandler;
-import util.servidor.handler.BajaHandler;
-import util.servidor.handler.BuscarHandler;
-import util.servidor.handler.EliminarHandler;
-import util.token.TokenUtil;
-
 public class ServidorImpl implements Servidor {
 
+    /**
+     *
+     */
     private HttpServer httpServer;
 
+    /**
+     *
+     */
     private Map<String, Token> tokens;
 
+    /**
+     *
+     */
     private List<Contenido> contenidos;
 
+    /**
+     *
+     */
     private String nombre;
 
-    public ServidorImpl(String nombre, int puerto) {
+    /**
+     *
+     * @param nombre del servidor
+     * @param puerto en el que va a correr el servidor
+     */
+    public ServidorImpl(final String nombre, final int puerto) {
         try {
             this.nombre = nombre;
             tokens = Maps.newHashMap();
@@ -54,6 +65,10 @@ public class ServidorImpl implements Servidor {
         }
     }
 
+    /**
+     *
+     * @return -
+     */
     public HttpServer getHttpServer() {
         return httpServer;
     }
@@ -71,29 +86,29 @@ public class ServidorImpl implements Servidor {
     }
 
     @Override
-    public void baja(String token) {
+    public void baja(final String token) {
         tokens.remove(token);
     }
 
     @Override
-    public void agregar(Contenido contenido, String token) {
+    public void agregar(final Contenido contenido, final String token) {
         this.contenidos.add(contenido);
     }
 
     @Override
-    public void eliminar(Contenido contenido, String token) {
+    public void eliminar(final Contenido contenido, final String token) {
         if (token.equals(TokenUtil.ADMIN_TOKEN)) {
             this.contenidos.remove(contenido);
         }
     }
 
     @Override
-    public List<Contenido> buscar(final String subcadena, String token) {
+    public List<Contenido> buscar(final String subcadena, final String token) {
         List<Contenido> result;
 
         result = Op.onList(contenidos).removeAllFalse(new IFunction<Contenido, Boolean>() {
             @Override
-            public Boolean execute(Contenido input, ExecCtx ctx) throws Exception {
+            public Boolean execute(final Contenido input, final ExecCtx ctx) throws Exception {
                 return StringUtils.containsIgnoreCase(input.obtenerTitulo(), subcadena);
             }
         }).get();
@@ -117,7 +132,7 @@ public class ServidorImpl implements Servidor {
     }
 
     @Override
-    public boolean comprobarToken(String token) {
+    public boolean comprobarToken(final String token) {
         return tokens.containsKey(token);
     }
 }

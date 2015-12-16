@@ -10,6 +10,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'cobertura'
+apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.7
 
@@ -27,6 +28,11 @@ repositories {
     mavenCentral()
 }
 
+checkstyle {
+    configFile = file("${project.rootDir}/config/checkstyle.xml")
+    ignoreFailures = true
+    toolVersion = '6.7'
+}
 
 dependencies {
     // Commons

@@ -2,6 +2,10 @@ package modelo.contenido;
 
 import java.util.List;
 
+/**
+ *
+ */
+
 public interface Contenido {
 
     /**
@@ -37,8 +41,8 @@ public interface Contenido {
      * Inserta un nuevo Contenido en la posicion siguiente al Contenido
      * predecesor si este esta presente en la lista de reproduccion, o bien
      * se inserta al final de la lista si no lo esta.
-     * @param nuevo contenido a agregar
-     * @param contenido despues del cual se inserta el nuevo contenido
+     * @param contenido contenido a agregar
+     * @param predecesor despues del cual se inserta el nuevo contenido
      */
 
     void agregar(Contenido contenido, Contenido predecesor);

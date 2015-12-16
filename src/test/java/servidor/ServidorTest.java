@@ -1,48 +1,66 @@
 package servidor;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import modelo.contenido.Contenido;
+import modelo.contenido.impl.ContenidoImpl;
+import modelo.servidor.Servidor;
+import modelo.servidor.impl.ServidorBackup;
+import modelo.servidor.impl.ServidorImpl;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-
-import modelo.contenido.Contenido;
-import modelo.contenido.impl.ContenidoImpl;
-import modelo.servidor.Servidor;
-import modelo.servidor.impl.ServidorBackup;
-import modelo.servidor.impl.ServidorImpl;
 import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.servidor.ServidorTestUtil;
 import util.servidor.ServidorUtil;
 import util.token.TokenUtil;
 
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Map;
 
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.*;
+
+/**
+ *
+ */
 public class ServidorTest {
 
+    /**
+     *
+     */
     private static Servidor servidor;
 
+    /**
+     *
+     */
     private static Servidor servidorBackup1;
 
+    /**
+     *
+     */
     private static Servidor servidorBackup2;
 
+    /**
+     *
+     */
     private static Servidor servidorBackup3;
 
+    /**
+     *
+     */
     private static HttpURLConnection connection;
 
+
+    /**
+     *
+     */
     @Before
     public void setUp() {
         servidor = new ServidorImpl("Servidor1", 8080);
@@ -51,6 +69,9 @@ public class ServidorTest {
         servidorBackup1 = new ServidorBackup("Servidor1", 8081, (ServidorBackup) servidorBackup2);
     }
 
+    /**
+     *
+     */
     @After
     public void cleanUp() {
         ((ServidorImpl) servidor).getHttpServer().stop(0);
@@ -60,6 +81,10 @@ public class ServidorTest {
         connection.disconnect();
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorTestResponseNotFound() throws IOException {
         connection = HttpUtil.sendGet("http://localhost:8080/fail");
@@ -67,6 +92,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_NOT_FOUND, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorAltaTestResponseOK() throws IOException {
         HttpURLConnection connection = HttpUtil.sendGet("http://localhost:8080/alta");
@@ -74,6 +103,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBajaTestResponseOK() throws IOException {
         String token = obtenerTokenAltaServidor();
@@ -83,6 +116,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBajaTestResponseBadRequest() throws IOException {
         connection = HttpUtil.sendGet("http://localhost:8080/baja");
@@ -90,6 +127,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_BAD_REQUEST, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorAgregarContenidoTestResultOK() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
@@ -100,6 +141,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorAgregarContenidoTestForbidden() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
@@ -110,6 +155,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_FORBIDDEN, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBuscarTestSinPublicidad() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
@@ -119,6 +168,10 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBuscarTestPublicidadResult() throws IOException {
         Map<String, String> params = Maps.newHashMap();
@@ -133,6 +186,10 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorAgregarYBuscarTestResultOK() throws IOException {
         Contenido contenido1 = new ContenidoImpl("Test", 23);
@@ -167,6 +224,10 @@ public class ServidorTest {
         assertNotEquals(wrongExpected, result);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorEliminarYBuscarTestResultOK() throws IOException {
         Contenido contenido1 = new ContenidoImpl("Test", 23);
@@ -207,6 +268,10 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBackupAgregarContenidoTestResultOK() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
@@ -245,6 +310,10 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     *
+     * @throws IOException -
+     */
     @Test
     public void servidorBuscarConCaducidadDeToken() throws IOException {
         String token = obtenerTokenAltaServidor();
@@ -274,27 +343,59 @@ public class ServidorTest {
 
     // Static methods
 
+    /**
+     *
+     * @return -
+     * @throws IOException -
+     */
     private static String obtenerTokenAltaServidor() throws IOException {
         connection = HttpUtil.sendGet("http://localhost:8080/alta");
         return IOUtils.toString(connection.getInputStream(), Charsets.UTF_8.name());
     }
 
-    private static void agregarContenido(Contenido contenido) throws IOException {
+    /**
+     *
+     * @param contenido -
+     * @throws IOException -
+     */
+    private static void agregarContenido(final Contenido contenido) throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
         connection.getResponseCode();
     }
 
-    private static String buscarContenido(String subCadena) throws IOException {
+    /**
+     *
+     * @param subCadena -
+     * @return -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String subCadena) throws IOException {
         return buscarContenido("http://localhost:8080/buscar", subCadena, null, false);
     }
 
-    private static String buscarContenido(String subCadena, String token) throws IOException {
+    /**
+     *
+     * @param subCadena -
+     * @param token -
+     * @return -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String subCadena, final String token) throws IOException {
         return buscarContenido("http://localhost:8080/buscar", subCadena, token, false);
     }
 
-    private static String buscarContenido(String url, String subCadena, String token, boolean useAdminToken) throws
+    /**
+     *
+     * @param url -
+     * @param subCadena -
+     * @param token -
+     * @param useAdminToken -
+     * @return -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String url, final String subCadena, final String token, final boolean useAdminToken) throws
             IOException {
         Map<String, String> params = Maps.newHashMap();
         if (useAdminToken) {

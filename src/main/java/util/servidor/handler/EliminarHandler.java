@@ -1,29 +1,37 @@
 package util.servidor.handler;
 
-import java.io.IOException;
-
-import org.apache.http.HttpStatus;
-
 import com.sun.net.httpserver.HttpExchange;
-
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.ContenidoImpl;
 import modelo.servidor.Servidor;
+import org.apache.http.HttpStatus;
 import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.servidor.BaseHandler;
 import util.token.TokenUtil;
 
+import java.io.IOException;
+
+/**
+ *
+ */
 public class EliminarHandler extends BaseHandler {
 
+    /**
+     *
+     */
     private Servidor servidor;
 
-    public EliminarHandler(Servidor servidor) {
+    /**
+     *
+     * @param servidor -
+     */
+    public EliminarHandler(final Servidor servidor) {
         this.servidor = servidor;
     }
 
     @Override
-    public void handleRequest(HttpExchange httpExchange) throws IOException {
+    public void handleRequest(final HttpExchange httpExchange) throws IOException {
         String token = HttpUtil.getQueryValueFromHttpExchange(httpExchange, "token");
 
         if (token == null || !token.equals(TokenUtil.ADMIN_TOKEN)) {

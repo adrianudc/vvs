@@ -12,17 +12,35 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
+/**
+ *
+ */
 public class EmisoraTest {
 
-    Emisora emisora;
+    /**
+     *
+     */
+    private Emisora emisora;
 
-    Cancion cancion;
+    /**
+     *
+     */
+    private Cancion cancion;
 
-    Cancion cancion2;
+    /**
+     *
+     */
+    private Cancion cancion2;
 
-    Anuncio anuncio;
+    /**
+     *
+     */
+    private Anuncio anuncio;
 
-    List<Contenido> resultadosBuscados;
+    /**
+     *
+     */
+    private List<Contenido> resultadosBuscados;
 
     /**
      * Inicializa los elementos comunes entre tests.
@@ -45,7 +63,7 @@ public class EmisoraTest {
      */
 
     @Test
-    public void TestAgregarContenido() {
+    public void testAgregarContenido() {
         assertEquals(0, emisora.obtenerDuracion());
         assertEquals(Lists.newArrayList(), emisora.buscar("Test"));
         emisora.agregar(cancion, null);
@@ -71,7 +89,7 @@ public class EmisoraTest {
      */
 
     @Test
-    public void TestBuscarContenido() {
+    public void testBuscarContenido() {
         emisora.agregar(cancion, null);
         emisora.agregar(cancion2, cancion);
         emisora.agregar(anuncio, cancion);
@@ -87,7 +105,7 @@ public class EmisoraTest {
      */
 
     @Test
-    public void TestEliminarContenido() {
+    public void testEliminarContenido() {
         emisora.agregar(cancion, null);
         emisora.agregar(cancion2, cancion);
         emisora.eliminar(cancion);
