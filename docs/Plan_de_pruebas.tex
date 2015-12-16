@@ -1,0 +1,308 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This document is based on the template: Large Colored Title Article %
+%                                         Version 1.1 (25/11/12)      %
+%                                                                     %
+% The template was downloaded from: http://www.LaTeXTemplates.com     %
+%                                                                     %
+% Original author:                                                    %
+% Frits Wenneker (http://www.howtotex.com)                             %
+%                                                                     %
+% License:                                                            %
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/) %
+%                                                                     %
+% Authors of this version:                                             %
+% Adrian Quintas Garcia              %
+% Yuriy Mischenko              %
+%                                                                     %
+% Original licensing terms are maintained                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[DIV=calc,paper=a4,fontsize=11pt,onecolumn]{scrartcl}	 % A4 paper and 11pt font size
+
+\usepackage[galician]{babel} % Galician language/hyphenation
+\usepackage[utf8]{inputenc}
+\usepackage[protrusion=true,expansion=true]{microtype} % Better typography
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[svgnames]{xcolor} % Enabling colors by their 'svgnames'
+\usepackage[hang,small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{fix-cm}	 % Custom font sizes - used for the initial letter in the document
+
+\usepackage{sectsty} % Enables custom section titles
+\allsectionsfont{\usefont{OT1}{phv}{b}{n}} % Change the font of all section commands
+
+\usepackage{fancyhdr} % Needed to define custom headers/footers
+\pagestyle{fancy} % Enables the custom headers/footers
+\usepackage{lastpage} % Used to determine the number of pages in the document (for "Page X of Total")
+
+% Headers - all currently empty
+\lhead{}
+\chead{}
+\rhead{}
+
+% Footers
+\lfoot{\textsc{vvs-plan-probas}}
+\cfoot{}
+\rfoot{\footnotesize Páxina \thepage\ de \pageref{LastPage}} % "Page 1 of 2"
+
+\renewcommand{\headrulewidth}{0.0pt} % No header rule
+\renewcommand{\footrulewidth}{0.4pt} % Thin footer rule
+
+\definecolor{UDC}{RGB}{206,0,124}
+\definecolor{DarkUDC}{rgb}{0.75,0.75,0.75}
+\definecolor{LightUDC}{RGB}{128,128,128}
+
+\usepackage{lettrine} % Package to accentuate the first letter of the text
+\newcommand{\initial}[1]{ % Defines the command and style for the first letter
+\lettrine[lines=3,lhang=0.3,nindent=0em]{
+\color{UDC}
+{\textsf{#1}}}{}}
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\usepackage{titling} % Allows custom title configuration
+
+\newcommand{\HorRule}{\color{UDC} \rule{\linewidth}{1pt}} % Defines the pink horizontal rule around the title
+
+\pretitle{\vspace{-30pt} \begin{flushleft} \HorRule \fontsize{20}{20} \usefont{OT1}{phv}{b}{n} \color{DarkUDC} \selectfont} % Horizontal rule before the title
+
+\title{PLAN DE PROBAS} % Your article title
+
+\posttitle{\par\end{flushleft}\vskip 0.5em} % Whitespace under the title
+
+\preauthor{\begin{flushleft}\large \lineskip 0.5em \usefont{OT1}{phv}{b}{sl} \color{DarkUDC}} % Author font configuration
+
+\author{Título proxecto: Práctica \\
+	Ref. proxecto: Verificación y validación de software}
+
+\postauthor{\footnotesize \usefont{OT1}{phv}{m}{sl} \color{Black} % Configuration for the institution name
+\par\end{flushleft}\HorRule} % Horizontal rule after the title
+
+\date{\sffamily Validación e Verificación de Software} % Add a date here if you would like one to appear underneath the title block
+
+%----------------------------------------------------------------------------------------
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+            allcolors=UDC}
+
+\usepackage{array}
+\usepackage{colortbl}
+
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hint}[1]{\begin{quote}\itshape #1 \end{quote}}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+\thispagestyle{fancy} % Enabling the custom headers/footers for the first page 
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\vspace*{1cm}
+
+\begin{center}
+\small \sffamily
+\begin{tabular}{c|c|c}
+Data de aprobación & Control de versións & Observacións \\ \hline
+& & \\ \hline
+& & \\ \hline
+& & \\
+\end{tabular}
+\end{center}
+
+\clearpage
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Introdución}
+
+\subsection{Propósito}
+
+\hint{El plan de pruebas se aplicará a la segunda y última iteración de este proyecto.}
+
+\section{Compoñentes avaliados}
+
+\hint{Se someterán a pruebas tanto el servidor como contenido.}
+
+\section{Funcionalidades}
+
+\hint{
+		\begin{enumerate}
+			\item Alta de servidor
+			\item Baja de servidor
+			\item Buscar contenido en el servidor
+			\item Agregar contenido en el servidor			
+			\item Eliminar contenido en el servidor			
+			\item Obtener lista de reproducción de contenido
+			\item Buscar contenido dentro de emisoras
+			\item Eliminar contenido dentro de emisoras
+		\end{enumerate}
+	}
+
+\section{Interfaces}
+
+\hint{El sistema no realizará ninguna interacción con otros componentes o sistemas.}
+
+\section{Parámetros de calidade}
+
+\hint{
+	\begin{enumerate}
+		\item Seguridad (apartado 4.2.1 Línea base)
+		\item Fiabilidad (apartado 4.2.2 Línea base)
+		\item Rendimiento (apartado 4.2.3 Línea base)
+	\end{enumerate}
+	}
+
+\section{Especificación de probas}
+
+\subsection{Servidor}
+
+\hint{
+		\begin{enumerate}
+			\item Alta de servidor
+			\subitem Petición de alta en el servidor
+			\subitem Entrada: Petición GET
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada y creación del token en el servidor
+			
+			\item Baja de servidor
+			\subitem Petición de baja en el servidor
+			\subitem Entrada: Petición POST incluyendo el token en el cuerpo
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada y el token eliminado del servidor
+			
+			\item Peticiòn desconocida
+			\subitem Petición a un path desconocido en el servidor
+			\subitem Entrada: Cualquier path inexistente en el servidor
+			\subitem Salida: Respuesta HTTP 404 NOT FOUND
+			\subitem Èxito: Recepción de salida esperada
+		
+			\item Baja de servidor sin token
+			\subitem Petición de baja al servidor sin un token proporcionado
+			\subitem Entrada: Petición POST sin el token en el cuerpo
+			\subitem Salida: Respuesta HTTP 400 BAD REQUEST
+			\subitem Èxito: Recepción de salida esperada
+			
+			\item Agregar contenido
+			\subitem Añadir un contenido al servidor
+			\subitem Entrada: Petición POST con el token y contenido añadido en el cuerpo
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada y contenido añadido al servidor
+			
+			\item Agregar contenido sin token
+			\subitem Añadir un contenido al servidor
+			\subitem Entrada: Petición POST sin token y con el contenido añadido en el cuerpo
+			\subitem Salida: Respuesta HTTP 403 FORBIDDEN
+			\subitem Èxito: Recepción de salida esperada y sin cambios en el servidor
+			
+			\item Buscar contenido sin obtener publicidad
+			\subitem Buscar contenido con un token válido que no obtenga publicidad
+			\subitem Entrada: Petición POST con el token y el criterio de búsqueda en el cuerpo
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada y el resultado de la búsqueda, sin publicidad añadida
+			
+			\item Buscar contenido con publicidad
+			\subitem Buscar contenido sin token, obtenido los resultados con publicidad
+			\subitem Entrada: Petición POST con el criterio de búsqueda en el cuerpo
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada y el resultado de la búsqueda, con publicidad añadida
+			
+			\item Eliminar contenido
+			\subitem Eliminar contenido enviando una petición al servidor con un token válido
+			\subitem Entrada: Petición POST con el token y el contenido a eliminar
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada, eliminándose el contenido de la petición de los datos del servidor
+			
+			\item Buscar contenido con token caducado
+			\subitem Realizar una petición de contenido con un token caducado
+			\subitem Entrada: Petición POST con el token y el contenido a eliminar
+			\subitem Salida: Respuesta HTTP 200 OK
+			\subitem Èxito: Recepción de salida esperada, con el contenido incluyendo publicidad
+		\end{enumerate}
+	}
+	
+	\subsection{Contenido}
+	
+	\hint{
+		\begin{enumerate}
+			\item Obtener lista de reproducción de anuncio
+			\subitem Petición lista de reproducción a un contenido de tipo anuncio
+			\subitem Entrada: Petición de lista de reproducción a un contenido
+			\subitem Salida: Lista de reproducción incluyendo el propio anuncio
+			\subitem Èxito: Recepción de salida esperada
+			
+			\item Obtener lista de reproducción de una canción
+			\subitem Petición lista de reproducción a un contenido de tipo canción
+			\subitem Entrada: Petición de lista de reproducción a un contenido
+			\subitem Salida: Lista de reproducción incluyendo a la propia canción
+			\subitem Èxito: Recepción de salida esperada			
+			
+			\item Obtener lista de reproducción de una emisora
+			\subitem Petición lista de reproducción a un contenido de tipo emisora
+			\subitem Entrada: Petición de lista de reproducción a una emisora
+			\subitem Salida: Lista de reproducción del contenido de la emisora
+			\subitem Èxito: Recepción de salida esperada		
+			
+			\item Buscar contenido en un contenido tipo anuncio
+			\subitem Búsqueda de contenido en un contenido de tipo anuncio
+			\subitem Entrada: Petición del contenido a buscar
+			\subitem Salida: Lista de contenidos incluyendo solamente el propio anuncio
+			\subitem Èxito: Recepción de salida esperada							
+			
+			\item Buscar contenido en un contenido tipo canción
+			\subitem Búsqueda de contenido en un contenido de tipo canción
+			\subitem Entrada: Petición del contenido a buscar
+			\subitem Salida: Lista de contenidos incluyendo solamente la propia canción
+			\subitem Èxito: Recepción de salida esperada			
+			
+			\item Buscar contenido en un contenido tipo emisora
+			\subitem Búsqueda de contenido en un contenido de tipo emisora
+			\subitem Entrada: Petición del contenido a buscar
+			\subitem Salida: Lista de contenidos de la emisora
+			\subitem Èxito: Recepción de salida esperada				
+			
+			\item Eliminar contenido en un contenido tipo emisora
+			\subitem Eliminar contenido en un contenido de tipo emisora
+			\subitem Entrada: Petición del contenido a eliminar
+			\subitem Salida: N/A
+			\subitem Èxito: Emisora sin el contenido eliminado					
+        \end{enumerate}			
+	}			
+
+\section{Necesidades}
+
+\hint{Es necesario disponer de tanto de Gradle como Java >=6.}
+
+\section{Responsabilidades}
+
+\hint{
+	\begin{enumerate}
+		\item Adrián Quintás. Persona encargada de la gestión, diseño de plan de pruebas y resolución de conflitos.
+		\item Yuriy Mischenko. Persona encargada de la preparación, execución y notificación del plan de pruebas.
+	\end{enumerate}
+}
+
+\section{Planificación}
+
+\hint{Una vez finalizada la primera iteraciòn del proyecto, el plan de pruebas puede ejecutarse en cualquier momento, debiendo ser satisfactorio en cualquier circunstancia.}
+
+\section{Outros aspectos de interese}
+
+\hint{No procede.}
+
+\end{document}
