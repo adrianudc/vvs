@@ -1,25 +1,24 @@
 package util.servidor.handler;
 
-import com.sun.net.httpserver.HttpExchange;
-import modelo.servidor.TokenServidor;
+import java.io.IOException;
+
 import org.apache.http.HttpStatus;
+
+import com.sun.net.httpserver.HttpExchange;
+
+import modelo.servidor.TokenServidor;
 import util.http.HttpUtil;
 import util.servidor.BaseHandler;
-
-import java.io.IOException;
 
 /**
  *
  */
 public class BajaHandler extends BaseHandler {
+    
+    private TokenServidor servidor;
 
-	/**
-     *
-     */
-    private Servidor servidor;	/**
-     *
-     */
-    public BajaHandler(TokenServidor servidor) {        this.servidor = servidor;
+    public BajaHandler(TokenServidor servidor) {
+        this.servidor = servidor;
     }
 
     @Override
