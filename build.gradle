@@ -31,4 +31,8 @@ dependencies {
 
     // Test
     testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    // Testing
+    compile 'com.google.code.jetm:jetm-maven-plugin:1.0.2'
+
 }
