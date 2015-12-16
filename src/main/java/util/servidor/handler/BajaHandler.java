@@ -6,15 +6,15 @@ import org.apache.http.HttpStatus;
 
 import com.sun.net.httpserver.HttpExchange;
 
-import modelo.servidor.Servidor;
+import modelo.servidor.TokenServidor;
 import util.http.HttpUtil;
 import util.servidor.BaseHandler;
 
 public class BajaHandler extends BaseHandler {
 
-    private Servidor servidor;
+    private TokenServidor servidor;
 
-    public BajaHandler(Servidor servidor) {
+    public BajaHandler(TokenServidor servidor) {
         this.servidor = servidor;
     }
 

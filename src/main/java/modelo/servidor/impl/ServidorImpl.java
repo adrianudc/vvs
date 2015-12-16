@@ -15,7 +15,7 @@ import com.google.common.collect.Maps;
 import com.sun.net.httpserver.HttpServer;
 
 import modelo.contenido.Contenido;
-import modelo.servidor.Servidor;
+import modelo.servidor.TokenServidor;
 import modelo.token.Token;
 import util.servidor.ServidorUtil;
 import util.servidor.handler.AgregarHandler;
@@ -25,7 +25,7 @@ import util.servidor.handler.BuscarHandler;
 import util.servidor.handler.EliminarHandler;
 import util.token.TokenUtil;
 
-public class ServidorImpl implements Servidor {
+public class ServidorImpl implements TokenServidor {
 
     private HttpServer httpServer;
 
