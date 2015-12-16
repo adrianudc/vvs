@@ -7,3 +7,15 @@ target
 *.iml
 HistorialReports/
 lib/
+
+#Latex
+docs/*.aux
+docs/*.toc
+docs/*.pdf
+docs/*.log
+docs/*.out
+docs/*.lof
+docs/*.bbl
+docs/*.blg
+docs/*.synctex.gz
+docs/*.synctex.gz
