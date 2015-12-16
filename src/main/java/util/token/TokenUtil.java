@@ -2,15 +2,30 @@ package util.token;
 
 import modelo.token.Token;
 
+/**
+ *
+ */
 public class TokenUtil {
 
-    public final static String ADMIN_TOKEN = "bjk35hj345kf3hjkt4fdfj2f2";
+    /**
+     *
+     */
+    public static final String ADMIN_TOKEN = "bjk35hj345kf3hjkt4fdfj2f2";
 
-    public static void incrementarContador(Token token) {
+    /**
+     *
+     * @param token a incrementar
+     */
+    public static void incrementarContador(final Token token) {
         incrementarContador(token, 1);
     }
 
-    public static void incrementarContador(Token token, int incremento) {
+    /**
+     *
+     * @param token a incrementar
+     * @param incremento valor del incremento
+     */
+    public static void incrementarContador(final Token token, final int incremento) {
         token.setContador(token.getContador() + incremento);
     }
 

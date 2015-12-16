@@ -1,4 +1,4 @@
-package servidor;
+package mocktests.servidor;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 import util.http.HttpUtil;
 import util.json.JSONUtil;
-import util.servidor.ServidorTestUtil;
 import util.servidor.ServidorUtil;
 import util.token.TokenUtil;
 
@@ -30,7 +29,7 @@ import static org.junit.Assert.*;
 /**
  *
  */
-public class ServidorTest {
+public class ServidorMockTest {
 
     /**
      *
@@ -111,7 +110,7 @@ public class ServidorTest {
     public void servidorBajaTestResponseOK() throws IOException {
         String token = obtenerTokenAltaServidor();
 
-        connection = HttpUtil.sendPost("http://localhost:8080/baja", ServidorTestUtil.getTokenParams(token));
+        connection = HttpUtil.sendPost("http://localhost:8080/baja", ServidorMockTestUtil.getTokenParams(token));
         int response = connection.getResponseCode();
         assertEquals(HttpStatus.SC_OK, response);
     }
@@ -133,7 +132,7 @@ public class ServidorTest {
      */
     @Test
     public void servidorAgregarContenidoTestResultOK() throws IOException {
-        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         Contenido contenido = new ContenidoImpl("Test", 23);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
@@ -147,7 +146,7 @@ public class ServidorTest {
      */
     @Test
     public void servidorAgregarContenidoTestForbidden() throws IOException {
-        Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(obtenerTokenAltaServidor());
         Contenido contenido = new ContenidoImpl("Test", 23);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
@@ -161,7 +160,7 @@ public class ServidorTest {
      */
     @Test
     public void servidorBuscarTestSinPublicidad() throws IOException {
-        Map<String, String> params = ServidorTestUtil.getTokenParams(obtenerTokenAltaServidor());
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(obtenerTokenAltaServidor());
         params.put("subCadena", "test");
         connection = HttpUtil.sendPost("http://localhost:8080/buscar", params);
         int response = connection.getResponseCode();
@@ -254,7 +253,7 @@ public class ServidorTest {
 
         assertEquals(expected, result);
 
-        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         params.put("contenido", JSONUtil.objectTOJSON(contenido4));
         connection = HttpUtil.sendPost("http://localhost:8080/eliminar", params);
         connection.getResponseCode();
@@ -274,7 +273,7 @@ public class ServidorTest {
      */
     @Test
     public void servidorBackupAgregarContenidoTestResultOK() throws IOException {
-        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         Contenido contenido = new ContenidoImpl("Test", 23);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8082/agregar", params);
@@ -359,7 +358,7 @@ public class ServidorTest {
      * @throws IOException -
      */
     private static void agregarContenido(final Contenido contenido) throws IOException {
-        Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
+        Map<String, String> params = ServidorMockTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
         connection.getResponseCode();

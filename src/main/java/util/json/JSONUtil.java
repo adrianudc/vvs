@@ -1,14 +1,17 @@
 package util.json;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+import java.util.List;
+
+/**
+ *
+ */
 public class JSONUtil {
 
     private static ObjectMapper mapper;
@@ -19,7 +22,14 @@ public class JSONUtil {
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
-    public static <T> T jsonToObject(String json, Class<T> valueType) {
+    /**
+     *
+     * @param json -
+     * @param valueType -
+     * @param <T> -
+     * @return -
+     */
+    public static <T> T jsonToObject(final String json, final Class<T> valueType) {
         try {
             return mapper.readValue(json, valueType);
         } catch (IOException e) {
@@ -27,7 +37,13 @@ public class JSONUtil {
         }
     }
 
-    public static <T> String objectTOJSON(T object) {
+    /**
+     *
+     * @param object -
+     * @param <T> -
+     * @return -
+     */
+    public static <T> String objectTOJSON(final T object) {
         try {
             return mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
@@ -35,7 +51,13 @@ public class JSONUtil {
         }
     }
 
-    public static <T> String objectListTOJSON(List<T> object) {
+    /**
+     *
+     * @param object -
+     * @param <T> -
+     * @return -
+     */
+    public static <T> String objectListTOJSON(final List<T> object) {
         try {
             return mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {

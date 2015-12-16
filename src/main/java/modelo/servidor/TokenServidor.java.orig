@@ -1,6 +1,14 @@
 package modelo.servidor;
 
-public interface TokenServidor extends Servidor{
+<<<<<<< HEAD
+public interface TokenServidor extends Servidor {
+=======
+/**
+ *
+ */
+public interface TokenServidor {
+>>>>>>> contenido
+
     /**
      *
      * @param token a comprobar

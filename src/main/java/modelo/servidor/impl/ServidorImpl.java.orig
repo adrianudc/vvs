@@ -14,7 +14,16 @@ import util.servidor.ServidorUtil;
 import util.servidor.handler.*;
 import util.token.TokenUtil;
 
+<<<<<<< HEAD
 public class ServidorImpl implements TokenServidor {
+=======
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
+
+public class ServidorImpl implements Servidor {
+>>>>>>> contenido
 
     /**
      *

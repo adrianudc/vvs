@@ -1,4 +1,4 @@
-package contenido;
+package mocktests.contenido;
 
 import com.google.common.collect.Lists;
 import modelo.contenido.Contenido;
@@ -12,7 +12,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  *
  */
-public class CancionTest {
+public class CancionMockTest {
 
     /**
      *

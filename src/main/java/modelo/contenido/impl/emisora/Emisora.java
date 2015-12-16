@@ -1,14 +1,17 @@
 package modelo.contenido.impl.emisora;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
-
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.ContenidoImpl;
 
+import java.util.List;
+
+
+/**
+ *
+ */
 public class Emisora extends ContenidoImpl {
 
     /**
@@ -30,16 +33,22 @@ public class Emisora extends ContenidoImpl {
      * El segundo recibe una lista de Contenidos como parametro.
      * Ambos contructores inicializan duracion a 0. El segundo contructor recorre la lista que
      * se la ha pasado y suma las duraciones de sus Contenidos a la duracion de la Emisora.
+     * @param titulo -
      */
     @JsonCreator
-    public Emisora(@JsonProperty("titulo") String titulo) {
+    public Emisora(@JsonProperty("titulo")final String titulo) {
         super(titulo, 0);
         this.listaReproduccion = Lists.newArrayList();
     }
 
+    /**
+     *
+     * @param titulo -
+     * @param listaReproduccion -
+     */
     @JsonCreator
-    public Emisora(@JsonProperty("titulo") String titulo,
-            @JsonProperty("listaReproduccion") List<Contenido> listaReproduccion) {
+    public Emisora(@JsonProperty("titulo")final String titulo,
+            @JsonProperty("listaReproduccion")final List<Contenido> listaReproduccion) {
         super(titulo, 0);
         this.listaReproduccion = listaReproduccion;
         for (Contenido contenido : listaReproduccion) {
@@ -58,7 +67,7 @@ public class Emisora extends ContenidoImpl {
      */
 
     @Override
-    public List<Contenido> buscar(String subcadena) {
+    public List<Contenido> buscar(final String subcadena) {
         List<Contenido> resultados = Lists.newArrayList();
         for (Contenido contenido : listaReproduccion) {
             if (contenido.obtenerTitulo().contains(subcadena)) {
@@ -76,7 +85,7 @@ public class Emisora extends ContenidoImpl {
      */
 
     @Override
-    public void agregar(Contenido contenido, Contenido predecesor) {
+    public void agregar(final Contenido contenido, final Contenido predecesor) {
         if (listaReproduccion.contains(predecesor)) {
             listaReproduccion.add(listaReproduccion.indexOf(predecesor) + 1, contenido);
         } else {
@@ -92,38 +101,11 @@ public class Emisora extends ContenidoImpl {
      */
 
     @Override
-    public void eliminar(Contenido contenido) {
+    public void eliminar(final Contenido contenido) {
         if (listaReproduccion.contains(contenido)) {
             listaReproduccion.remove(contenido);
             setDuracion(obtenerDuracion() - contenido.obtenerDuracion());
         }
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-
-        Emisora emisora = (Emisora) o;
-
-        return !(listaReproduccion != null ?
-                !listaReproduccion.equals(emisora.listaReproduccion) :
-                emisora.listaReproduccion != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (listaReproduccion != null ? listaReproduccion.hashCode() : 0);
-        return result;
     }
 }

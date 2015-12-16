@@ -1,4 +1,4 @@
-package util.servidor;
+package mocktests.servidor;
 
 import com.google.common.collect.Maps;
 
@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  *
  */
-public class ServidorTestUtil {
+public class ServidorMockTestUtil {
 
     /**
      *

@@ -1,8 +1,13 @@
 package util.servidor.handler;
 
 import com.sun.net.httpserver.HttpExchange;
+<<<<<<< HEAD
+
 import modelo.servidor.TokenServidor;
+=======
+import modelo.servidor.Servidor;
 import org.apache.http.HttpStatus;
+>>>>>>> contenido
 import util.http.HttpUtil;
 import util.servidor.BaseHandler;
 
@@ -13,13 +18,23 @@ import java.io.IOException;
  */
 public class BajaHandler extends BaseHandler {
 
-	/**
+<<<<<<< HEAD
+    private TokenServidor servidor;
+
+    public BajaHandler(TokenServidor servidor) {
+=======
+    /**
      *
      */
-    private Servidor servidor;	/**
+    private Servidor servidor;
+
+    /**
      *
+     * @param servidor -
      */
-    public BajaHandler(TokenServidor servidor) {        this.servidor = servidor;
+    public BajaHandler(final Servidor servidor) {
+>>>>>>> contenido
+        this.servidor = servidor;
     }
 
     @Override
