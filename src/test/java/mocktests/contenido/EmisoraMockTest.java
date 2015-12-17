@@ -8,9 +8,12 @@ import modelo.contenido.impl.track.Cancion;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -20,22 +23,22 @@ public class EmisoraMockTest {
     /**
      *
      */
-    private Emisora emisora;
+    private Emisora mockEmisora;
 
     /**
      *
      */
-    private Cancion cancion;
+    private Cancion mockCancion;
 
     /**
      *
      */
-    private Cancion cancion2;
+    private Cancion mockCancion2;
 
     /**
      *
      */
-    private Anuncio anuncio;
+    private Anuncio mockAnuncio;
 
     /**
      *
@@ -48,11 +51,11 @@ public class EmisoraMockTest {
 
     @Before
     public void setUP() {
-        emisora = new Emisora("EmisoraPrueba");
-        cancion = new Cancion("CancionPrueba", 120);
-        cancion2 = new Cancion("CancionPrueba2", 180);
-        anuncio = new Anuncio();
-        resultadosBuscados = Lists.newArrayList();
+        mockEmisora = mock(Emisora.class);
+        mockCancion = mock(Cancion.class);
+        mockCancion2 = mock(Cancion.class);
+        mockAnuncio = mock(Anuncio.class);
+        resultadosBuscados = new ArrayList<>();
 
     }
 
@@ -64,23 +67,16 @@ public class EmisoraMockTest {
 
     @Test
     public void testAgregarContenido() {
-        assertEquals(0, emisora.obtenerDuracion());
-        assertEquals(Lists.newArrayList(), emisora.buscar("Test"));
-        emisora.agregar(cancion, null);
-        assertEquals(120, emisora.obtenerDuracion());
-        assertEquals(cancion, emisora.obtenerListaReproduccion().get(0));
-        emisora.agregar(cancion2, cancion);
-        assertEquals(300, emisora.obtenerDuracion());
-        assertEquals(cancion2, emisora.obtenerListaReproduccion().get(1));
-        emisora.agregar(anuncio, cancion);
-        assertEquals(305, emisora.obtenerDuracion());
-        assertEquals(anuncio, emisora.obtenerListaReproduccion().get(1));
-        List<Contenido> constructorlist = Lists.newArrayList();
-        constructorlist.add(cancion);
-        constructorlist.add(cancion2);
-        Emisora emisoraconstructor2 = new Emisora("test", constructorlist);
-        assertEquals(300, emisoraconstructor2.obtenerDuracion());
-        assertEquals(cancion2, emisoraconstructor2.obtenerListaReproduccion().get(1));
+        when(mockEmisora.obtenerListaReproduccion()).thenReturn(new ArrayList<Contenido>());
+        assertEquals(Lists.newArrayList(), mockEmisora.obtenerListaReproduccion());
+        when(mockEmisora.obtenerDuracion()).thenReturn(0);
+        assertEquals(0, mockEmisora.obtenerDuracion());
+        mockEmisora.agregar(mockCancion, null);
+        when(mockEmisora.obtenerDuracion()).thenReturn(120);
+        assertEquals(120, mockEmisora.obtenerDuracion());
+        mockEmisora.agregar(mockCancion2, mockCancion);
+        when(mockEmisora.obtenerDuracion()).thenReturn(300);
+        assertEquals(300, mockEmisora.obtenerDuracion());
     }
 
     /**
@@ -90,13 +86,15 @@ public class EmisoraMockTest {
 
     @Test
     public void testBuscarContenido() {
-        emisora.agregar(cancion, null);
-        emisora.agregar(cancion2, cancion);
-        emisora.agregar(anuncio, cancion);
-        resultadosBuscados.add(cancion);
-        resultadosBuscados.add(cancion2);
-        assertEquals(resultadosBuscados, emisora.buscar("CancionPrueba"));
-        assertEquals(Lists.newArrayList(), emisora.buscar("Test"));
+        mockEmisora.agregar(mockCancion, null);
+        mockEmisora.agregar(mockCancion2, mockCancion);
+        mockEmisora.agregar(mockAnuncio, mockCancion);
+        resultadosBuscados.add(mockCancion);
+        resultadosBuscados.add(mockCancion2);
+        when(mockEmisora.buscar("CancionPrueba")).thenReturn(resultadosBuscados);
+        assertEquals(resultadosBuscados, mockEmisora.buscar("CancionPrueba"));
+        when(mockEmisora.buscar("Test")).thenReturn(new ArrayList<Contenido>());
+        assertEquals(Lists.newArrayList(), mockEmisora.buscar("Test"));
     }
 
     /**
@@ -106,15 +104,14 @@ public class EmisoraMockTest {
 
     @Test
     public void testEliminarContenido() {
-        emisora.agregar(cancion, null);
-        emisora.agregar(cancion2, cancion);
-        emisora.eliminar(cancion);
-        resultadosBuscados.add(cancion2);
-        assertEquals(resultadosBuscados, emisora.obtenerListaReproduccion());
-        assertEquals(180, emisora.obtenerDuracion());
-        emisora.eliminar(cancion);
-        assertEquals(resultadosBuscados, emisora.obtenerListaReproduccion());
-        assertEquals(180, emisora.obtenerDuracion());
+        mockEmisora.agregar(mockCancion, null);
+        mockEmisora.agregar(mockCancion2, mockCancion);
+        mockEmisora.eliminar(mockCancion);
+        resultadosBuscados.add(mockCancion2);
+        when(mockEmisora.obtenerListaReproduccion()).thenReturn(resultadosBuscados);
+        assertEquals(resultadosBuscados, mockEmisora.obtenerListaReproduccion());
+        when(mockEmisora.obtenerDuracion()).thenReturn(180);
+        assertEquals(180, mockEmisora.obtenerDuracion());
     }
 
 }

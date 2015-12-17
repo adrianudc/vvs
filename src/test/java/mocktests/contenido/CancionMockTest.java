@@ -5,9 +5,12 @@ import modelo.contenido.Contenido;
 import modelo.contenido.impl.track.Cancion;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -17,7 +20,8 @@ public class CancionMockTest {
     /**
      *
      */
-    private Cancion cancion = new Cancion("CancionPrueba", 180);
+    private Cancion mockCancion = mock(Cancion.class);
+
 
 
     /**
@@ -28,8 +32,9 @@ public class CancionMockTest {
     @Test
     public void testObtenerListaReproduccion() {
         List<Contenido> listaEsperada = Lists.newArrayList();
-        listaEsperada.add(cancion);
-        assertEquals(listaEsperada, cancion.obtenerListaReproduccion());
+        listaEsperada.add(mockCancion);
+        when(mockCancion.obtenerListaReproduccion()).thenReturn(listaEsperada);
+        assertEquals(listaEsperada, mockCancion.obtenerListaReproduccion());
     }
 
 
@@ -41,9 +46,11 @@ public class CancionMockTest {
     @Test
     public void testBuscar() {
         List<Contenido> listaEsperada = Lists.newArrayList();
-        listaEsperada.add(cancion);
-        assertEquals(listaEsperada, cancion.buscar("CancionPrueba"));
-        assertEquals(Lists.newArrayList(), cancion.buscar("Test"));
+        listaEsperada.add(mockCancion);
+        when(mockCancion.buscar("CancionPrueba")).thenReturn(listaEsperada);
+        assertEquals(listaEsperada, mockCancion.buscar("CancionPrueba"));
+        when(mockCancion.buscar("Test")).thenReturn(new ArrayList<Contenido>());
+        assertEquals(Lists.newArrayList(), mockCancion.buscar("Test"));
     }
 }
 
