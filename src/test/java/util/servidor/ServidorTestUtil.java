@@ -5,11 +5,12 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
- *
+ * The type Servidor test util.
  */
 public class ServidorTestUtil {
 
     /**
+     * Gets token params.
      *
      * @param token -
      * @return -

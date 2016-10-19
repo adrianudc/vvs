@@ -34,6 +34,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * The type Servidor test.
+ */
 public class ServidorTest {
 
     private static Servidor servidor;
@@ -51,6 +54,9 @@ public class ServidorTest {
      */
     private final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
 
+    /**
+     * Sets up.
+     */
     @Before
     public void setUp() {
         servidor = new ServidorImpl("Servidor1", 8080);
@@ -59,6 +65,9 @@ public class ServidorTest {
         servidorBackup1 = new ServidorBackup("Servidor1", 8081, (ServidorBackup) servidorBackup2);
     }
 
+    /**
+     * Clean up.
+     */
     @After
     public void cleanUp() {
         ((ServidorImpl) servidor).getHttpServer().stop(0);
@@ -68,6 +77,11 @@ public class ServidorTest {
         connection.disconnect();
     }
 
+    /**
+     * Servidor test response not found.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorTestResponseNotFound() throws IOException {
         EtmPoint point = etmMonitor
@@ -81,6 +95,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_NOT_FOUND, response);
     }
 
+    /**
+     * Servidor alta test response ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorAltaTestResponseOK() throws IOException {
         EtmPoint point = etmMonitor
@@ -94,6 +113,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     * Servidor baja test response ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBajaTestResponseOK() throws IOException {
         EtmPoint point = etmMonitor
@@ -109,6 +133,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     * Servidor baja test response bad request.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBajaTestResponseBadRequest() throws IOException {
         EtmPoint point = etmMonitor
@@ -122,6 +151,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_BAD_REQUEST, response);
     }
 
+    /**
+     * Servidor agregar contenido test result ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorAgregarContenidoTestResultOK() throws IOException {
         EtmPoint point = etmMonitor
@@ -138,6 +172,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     * Servidor agregar contenido test forbidden.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorAgregarContenidoTestForbidden() throws IOException {
         EtmPoint point = etmMonitor
@@ -154,6 +193,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_FORBIDDEN, response);
     }
 
+    /**
+     * Servidor buscar test sin publicidad.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBuscarTestSinPublicidad() throws IOException {
         EtmPoint point = etmMonitor
@@ -169,6 +213,11 @@ public class ServidorTest {
         assertEquals(HttpStatus.SC_OK, response);
     }
 
+    /**
+     * Servidor buscar test publicidad result.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBuscarTestPublicidadResult() throws IOException {
         EtmPoint point = etmMonitor
@@ -189,6 +238,11 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     * Servidor agregar y buscar test result ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorAgregarYBuscarTestResultOK() throws IOException {
         Contenido contenido1 = new ContenidoImpl("Test", 23);
@@ -228,6 +282,11 @@ public class ServidorTest {
         assertNotEquals(wrongExpected, result);
     }
 
+    /**
+     * Servidor eliminar y buscar test result ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorEliminarYBuscarTestResultOK() throws IOException {
         Contenido contenido1 = new ContenidoImpl("Test", 23);
@@ -273,6 +332,11 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     * Servidor backup agregar contenido test result ok.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBackupAgregarContenidoTestResultOK() throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
@@ -317,6 +381,11 @@ public class ServidorTest {
         assertEquals(expected, result);
     }
 
+    /**
+     * Servidor buscar con caducidad de token.
+     *
+     * @throws IOException the io exception
+     */
     @Test
     public void servidorBuscarConCaducidadDeToken() throws IOException {
         EtmPoint point = etmMonitor

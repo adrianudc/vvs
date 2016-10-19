@@ -13,6 +13,9 @@ import jetm.contenido.CancionTest;
 import jetm.contenido.EmisoraTest;
 import jetm.servidor.ServidorTest;
 
+/**
+ * The type Report generator.
+ */
 public class ReportGenerator {
 
     /**
@@ -20,6 +23,9 @@ public class ReportGenerator {
      */
     private EtmMonitor monitor;
 
+    /**
+     * Jetm report generation.
+     */
     @Test
     public void jetmReportGeneration() {
         // configure measurement framework

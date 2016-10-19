@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- *
+ * The type Anuncio mock test.
  */
 public class AnuncioMockTest {
 
@@ -26,7 +26,6 @@ public class AnuncioMockTest {
      * Comprueba que el metodo obtenerListaReproduccion devuelve correctamente
      * la lista conteniendo al propio elemento.
      */
-
     @Test
     public void testObtenerListaReproduccion() {
 
@@ -39,7 +38,6 @@ public class AnuncioMockTest {
      * Comprueba que el metodo buscar devuelve una lista con el propio elemento si
      * la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
      */
-
     @Test
     public void testBuscar() {
         List<Contenido> listaEsperada = new ArrayList<>();

@@ -1,34 +1,38 @@
 package servidor;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import modelo.contenido.Contenido;
-import modelo.contenido.impl.ContenidoImpl;
-import modelo.servidor.Servidor;
-import modelo.servidor.impl.ServidorBackup;
-import modelo.servidor.impl.ServidorImpl;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpStatus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
+import modelo.contenido.Contenido;
+import modelo.contenido.impl.ContenidoImpl;
+import modelo.servidor.Servidor;
+import modelo.servidor.impl.ServidorBackup;
+import modelo.servidor.impl.ServidorImpl;
 import util.http.HttpUtil;
 import util.json.JSONUtil;
 import util.servidor.ServidorTestUtil;
 import util.servidor.ServidorUtil;
 import util.token.TokenUtil;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.util.List;
-import java.util.Map;
-
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
- *
+ * The type Servidor test.
  */
 public class ServidorTest {
 
@@ -57,9 +61,8 @@ public class ServidorTest {
      */
     private static HttpURLConnection connection;
 
-
     /**
-     *
+     * Sets up.
      */
     @Before
     public void setUp() {
@@ -70,7 +73,7 @@ public class ServidorTest {
     }
 
     /**
-     *
+     * Clean up.
      */
     @After
     public void cleanUp() {
@@ -82,6 +85,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor test response not found.
      *
      * @throws IOException -
      */
@@ -93,6 +97,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor alta test response ok.
      *
      * @throws IOException -
      */
@@ -104,6 +109,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor baja test response ok.
      *
      * @throws IOException -
      */
@@ -117,6 +123,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor baja test response bad request.
      *
      * @throws IOException -
      */
@@ -128,6 +135,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor agregar contenido test result ok.
      *
      * @throws IOException -
      */
@@ -142,6 +150,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor agregar contenido test forbidden.
      *
      * @throws IOException -
      */
@@ -156,6 +165,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor buscar test sin publicidad.
      *
      * @throws IOException -
      */
@@ -169,6 +179,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor buscar test publicidad result.
      *
      * @throws IOException -
      */
@@ -187,6 +198,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor agregar y buscar test result ok.
      *
      * @throws IOException -
      */
@@ -225,6 +237,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor eliminar y buscar test result ok.
      *
      * @throws IOException -
      */
@@ -269,6 +282,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor backup agregar contenido test result ok.
      *
      * @throws IOException -
      */
@@ -311,6 +325,7 @@ public class ServidorTest {
     }
 
     /**
+     * Servidor buscar con caducidad de token.
      *
      * @throws IOException -
      */

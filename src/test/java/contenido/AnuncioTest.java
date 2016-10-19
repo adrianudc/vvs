@@ -10,7 +10,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- *
+ * The type Anuncio test.
  */
 public class AnuncioTest {
 
@@ -23,7 +23,6 @@ public class AnuncioTest {
      * Comprueba que el metodo obtenerListaReproduccion devuelve correctamente
      * la lista conteniendo al propio elemento.
      */
-
     @Test
     public void testObtenerListaReproduccion() {
 
@@ -36,7 +35,6 @@ public class AnuncioTest {
      * Comprueba que el metodo buscar devuelve una lista con el propio elemento si
      * la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
      */
-
     @Test
     public void testBuscar() {
         List<Contenido> listaEsperada = Lists.newArrayList();

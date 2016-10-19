@@ -13,7 +13,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- *
+ * The type Emisora test.
  */
 public class EmisoraTest {
 
@@ -45,7 +45,6 @@ public class EmisoraTest {
     /**
      * Inicializa los elementos comunes entre tests.
      */
-
     @Before
     public void setUP() {
         emisora = new Emisora("EmisoraPrueba");
@@ -61,7 +60,6 @@ public class EmisoraTest {
      * se suma correctamente y que los elementos se insertan en las posiciones
      * adecuadas.
      */
-
     @Test
     public void testAgregarContenido() {
         assertEquals(0, emisora.obtenerDuracion());
@@ -87,7 +85,6 @@ public class EmisoraTest {
      * Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene
      * la cadena que se pasa o lista vacia si ninguno la contiene.
      */
-
     @Test
     public void testBuscarContenido() {
         emisora.agregar(cancion, null);
@@ -103,7 +100,6 @@ public class EmisoraTest {
      * Prueba el metodo eliminar, comprobando que se resta correctamente la duracion
      * de la Emisora y que los elementos se eliminan adecuadamente.
      */
-
     @Test
     public void testEliminarContenido() {
         emisora.agregar(cancion, null);

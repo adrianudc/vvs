@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- *
+ * The type Cancion mock test.
  */
 public class CancionMockTest {
 
@@ -22,13 +22,10 @@ public class CancionMockTest {
      */
     private Cancion mockCancion = mock(Cancion.class);
 
-
-
     /**
      * Comprueba que el metodo obtenerListaReproduccion devuelve correctamente
      * la lista conteniendo al propio elemento.
      */
-
     @Test
     public void testObtenerListaReproduccion() {
         List<Contenido> listaEsperada = Lists.newArrayList();
@@ -37,12 +34,10 @@ public class CancionMockTest {
         assertEquals(listaEsperada, mockCancion.obtenerListaReproduccion());
     }
 
-
     /**
      * Comprueba que el metodo buscar devuelve una lista con el propio elemento si
      * la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
      */
-
     @Test
     public void testBuscar() {
         List<Contenido> listaEsperada = Lists.newArrayList();

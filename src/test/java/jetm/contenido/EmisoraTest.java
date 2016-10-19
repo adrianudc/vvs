@@ -17,16 +17,34 @@ import modelo.contenido.impl.track.Cancion;
 
 import static junit.framework.TestCase.assertEquals;
 
+/**
+ * The type Emisora test.
+ */
 public class EmisoraTest {
 
+    /**
+     * The Emisora.
+     */
     Emisora emisora;
 
+    /**
+     * The Cancion.
+     */
     Cancion cancion;
 
+    /**
+     * The Cancion 2.
+     */
     Cancion cancion2;
 
+    /**
+     * The Anuncio.
+     */
     Anuncio anuncio;
 
+    /**
+     * The Resultados buscados.
+     */
     List<Contenido> resultadosBuscados;
 
     /**
@@ -36,8 +54,7 @@ public class EmisoraTest {
 
     /**
      * Inicializa los elementos comunes entre tests.
-     **/
-
+     */
     @Before
     public void setUp() {
         emisora = new Emisora("EmisoraPrueba");
@@ -51,8 +68,7 @@ public class EmisoraTest {
      * Prueba el metodo de agregar contenido, comprobando que la duracion
      * se suma correctamente y que los elementos se insertan en las posiciones
      * adecuadas.
-     **/
-
+     */
     @Test
     public void testAgregarContenido() {
         EtmPoint point = etmMonitor
@@ -76,8 +92,7 @@ public class EmisoraTest {
     /**
      * Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene
      * la cadena que se pasa o lista vacia si ninguno la contiene.
-     **/
-
+     */
     @Test
     public void testBuscarContenido() {
         EtmPoint point = etmMonitor
@@ -98,8 +113,7 @@ public class EmisoraTest {
     /**
      * Prueba el metodo eliminar, comprobando que se resta correctamente la duracion
      * de la Emisora y que los elementos se eliminan adecuadamente.
-     **/
-
+     */
     @Test
     public void testEliminarContenido() {
         EtmPoint point = etmMonitor

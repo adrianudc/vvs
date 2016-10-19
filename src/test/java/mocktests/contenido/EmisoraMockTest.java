@@ -16,7 +16,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
- *
+ * The type Emisora mock test.
  */
 public class EmisoraMockTest {
 
@@ -48,7 +48,6 @@ public class EmisoraMockTest {
     /**
      * Inicializa los elementos comunes entre tests.
      */
-
     @Before
     public void setUP() {
         mockEmisora = mock(Emisora.class);
@@ -64,7 +63,6 @@ public class EmisoraMockTest {
      * se suma correctamente y que los elementos se insertan en las posiciones
      * adecuadas.
      */
-
     @Test
     public void testAgregarContenido() {
         when(mockEmisora.obtenerListaReproduccion()).thenReturn(new ArrayList<Contenido>());
@@ -83,7 +81,6 @@ public class EmisoraMockTest {
      * Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene
      * la cadena que se pasa o lista vacia si ninguno la contiene.
      */
-
     @Test
     public void testBuscarContenido() {
         mockEmisora.agregar(mockCancion, null);
@@ -101,7 +98,6 @@ public class EmisoraMockTest {
      * Prueba el metodo eliminar, comprobando que se resta correctamente la duracion
      * de la Emisora y que los elementos se eliminan adecuadamente.
      */
-
     @Test
     public void testEliminarContenido() {
         mockEmisora.agregar(mockCancion, null);
