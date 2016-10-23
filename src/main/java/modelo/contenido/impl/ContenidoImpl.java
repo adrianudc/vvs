@@ -1,12 +1,14 @@
 package modelo.contenido.impl;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import modelo.contenido.Contenido;
+import java.util.List;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import modelo.contenido.Contenido;
 
 /**
  * Clase que implementa la interfaz Contenido, contiene los elementos comunes al resto de implementaciones,
@@ -23,7 +25,7 @@ public class ContenidoImpl implements Contenido {
     /**
      *
      */
-    private int duracion; // segundos
+    private int duracion = 0; // segundos
 
     /**
      *
