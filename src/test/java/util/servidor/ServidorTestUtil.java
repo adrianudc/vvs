@@ -1,13 +1,13 @@
 package util.servidor;
 
-import com.google.common.collect.Maps;
-
 import java.util.Map;
+
+import com.google.common.collect.Maps;
 
 /**
  * The type Servidor test util.
  */
-public class ServidorTestUtil {
+public abstract class ServidorTestUtil {
 
     /**
      * Gets token params.

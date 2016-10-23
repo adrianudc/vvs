@@ -1,10 +1,11 @@
 package util.servidor;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
+import java.io.IOException;
+
 import org.apache.http.HttpStatus;
 
-import java.io.IOException;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
 
 /**
  *
@@ -28,6 +29,8 @@ public abstract class BaseHandler implements HttpHandler {
 
     /**
      *
+     * @param httpExchange -
+     * @throws IOException -
      */
     public abstract void handleRequest(final HttpExchange httpExchange) throws IOException;
 }

@@ -50,9 +50,9 @@ dependencies {
 
     // Test
     testCompile group: 'junit', name: 'junit', version: '4.11'
- 	testCompile "org.mockito:mockito-core:1.+"
-	// Testing
-	compile 'com.google.code.jetm:jetm-maven-plugin:1.0.2'
+    testCompile "org.mockito:mockito-core:1.+"
+    // Testing
+    compile 'com.google.code.jetm:jetm-maven-plugin:1.0.2'
 }
 cobertura {
     coverageFormats = ['html', 'xml']

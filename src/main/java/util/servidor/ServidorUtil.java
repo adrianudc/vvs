@@ -1,21 +1,21 @@
 package util.servidor;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.track.Anuncio;
 import modelo.token.Token;
 
-import java.math.BigInteger;
-import java.security.SecureRandom;
-
 /**
  *
  */
-public class ServidorUtil {
+public abstract class ServidorUtil {
 
     /**
      *
      */
-    public static final Contenido PUBLICIDAD = new Anuncio();
+    private static final Contenido PUBLICIDAD = new Anuncio();
 
     /**
      *

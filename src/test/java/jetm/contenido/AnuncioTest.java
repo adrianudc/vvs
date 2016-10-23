@@ -22,7 +22,7 @@ public class AnuncioTest {
     /**
      * The Anuncio.
      */
-    Anuncio anuncio = new Anuncio();
+    private Anuncio anuncio = new Anuncio();
 
     /**
      * JETM Monitor to check performance.

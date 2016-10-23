@@ -39,14 +39,29 @@ import static org.junit.Assert.assertTrue;
  */
 public class ServidorTest {
 
+    /**
+     * The Servidor.
+     */
     private static Servidor servidor;
 
+    /**
+     * The Servidor backup number 1.
+     */
     private static Servidor servidorBackup1;
 
+    /**
+     * The Servidor backup number 2.
+     */
     private static Servidor servidorBackup2;
 
+    /**
+     * The Servidor backup number 3.
+     */
     private static Servidor servidorBackup3;
 
+    /**
+     * The Http connection.
+     */
     private static HttpURLConnection connection;
 
     /**
@@ -421,27 +436,65 @@ public class ServidorTest {
 
     // Static methods
 
+    /**
+     * Obtiene token de servidor.
+     *
+     * @return Token -
+     * @throws IOException -
+     */
     private static String obtenerTokenAltaServidor() throws IOException {
         connection = HttpUtil.sendGet("http://localhost:8080/alta");
         return IOUtils.toString(connection.getInputStream(), Charsets.UTF_8.name());
     }
 
-    private static void agregarContenido(Contenido contenido) throws IOException {
+    /**
+     * Agrega contenido.
+     *
+     * @param contenido -
+     * @throws IOException -
+     */
+    private static void agregarContenido(final Contenido contenido) throws IOException {
         Map<String, String> params = ServidorTestUtil.getTokenParams(TokenUtil.ADMIN_TOKEN);
         params.put("contenido", JSONUtil.objectTOJSON(contenido));
         connection = HttpUtil.sendPost("http://localhost:8080/agregar", params);
         connection.getResponseCode();
     }
 
-    private static String buscarContenido(String subCadena) throws IOException {
+    /**
+     * Busca contenido.
+     *
+     * @param subCadena -
+     * @return Contenido -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String subCadena) throws IOException {
         return buscarContenido("http://localhost:8080/buscar", subCadena, null, false);
     }
 
-    private static String buscarContenido(String subCadena, String token) throws IOException {
+    /**
+     * Busca contenido.
+     *
+     * @param subCadena -
+     * @param token     -
+     * @return Contenido -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String subCadena, final String token) throws IOException {
         return buscarContenido("http://localhost:8080/buscar", subCadena, token, false);
     }
 
-    private static String buscarContenido(String url, String subCadena, String token, boolean useAdminToken) throws
+    /**
+     * Busca contenido.
+     *
+     * @param url           -
+     * @param subCadena     -
+     * @param token         -
+     * @param useAdminToken -
+     * @return Contenido -
+     * @throws IOException -
+     */
+    private static String buscarContenido(final String url, final String subCadena, final String token,
+            final boolean useAdminToken) throws
             IOException {
         Map<String, String> params = Maps.newHashMap();
         if (useAdminToken) {

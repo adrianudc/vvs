@@ -1,11 +1,5 @@
 package util.http;
 
-import com.google.common.collect.Maps;
-import com.sun.net.httpserver.HttpExchange;
-import org.apache.commons.codec.Charsets;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -13,27 +7,17 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
 
-public class HttpUtil {
+import org.apache.commons.codec.Charsets;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 
-    /**
-     *
-     * @param query -
-     * @return -
-     */
-    public static Map<String, String> queryToMap(final String query) {
-        Map<String, String> result = Maps.newHashMap();
-        if (query != null) {
-            for (String param : query.split("&")) {
-                String[] pair = param.split("=");
-                if (pair.length > 1) {
-                    result.put(pair[0], pair[1]);
-                } else {
-                    result.put(pair[0], "");
-                }
-            }
-        }
-        return result;
-    }
+import com.google.common.collect.Maps;
+import com.sun.net.httpserver.HttpExchange;
+
+/**
+ *
+ */
+public abstract class HttpUtil {
 
     /**
      *
@@ -43,8 +27,7 @@ public class HttpUtil {
      */
     public static String getQueryValueFromHttpExchange(final HttpExchange httpExchange, final String key) {
         String query = httpExchange.getRequestURI().getQuery();
-        String value = HttpUtil.queryToMap(query).get(key);
-        return value;
+        return HttpUtil.queryToMap(query).get(key);
     }
 
     /**
@@ -69,9 +52,9 @@ public class HttpUtil {
      * @throws IOException -
      */
 
-    public static HttpURLConnection sendPost(String url, final Map<String, String> params) throws IOException {
-        url = addQueryParamsToUrl(url, params);
-        URL obj = new URL(url);
+    public static HttpURLConnection sendPost(final String url, final Map<String, String> params) throws IOException {
+        final String urlWithParams = addQueryParamsToUrl(url, params);
+        URL obj = new URL(urlWithParams);
         HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
         connection.setRequestMethod(HttpPost.METHOD_NAME);
         connection.setDoInput(true);
@@ -89,7 +72,7 @@ public class HttpUtil {
      * @throws UnsupportedEncodingException -
      */
 
-    private static String addQueryParamsToUrl(String url, final Map<String, String> params)
+    private static String addQueryParamsToUrl(final String url, final Map<String, String> params)
             throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
@@ -105,6 +88,29 @@ public class HttpUtil {
             result.append(URLEncoder.encode(entry.getValue(), Charsets.UTF_8.name()));
         }
 
-        return result.toString().isEmpty() ? url : url + "?" + result.toString();
+        if (result.toString().isEmpty()) {
+            return url;
+        }
+
+        return url + "?" + result.toString();
+    }
+
+    /**
+     * @param query -
+     * @return -
+     */
+    private static Map<String, String> queryToMap(final String query) {
+        Map<String, String> result = Maps.newHashMap();
+        if (query != null) {
+            for (String param : query.split("&")) {
+                String[] pair = param.split("=");
+                if (pair.length > 1) {
+                    result.put(pair[0], pair[1]);
+                } else {
+                    result.put(pair[0], "");
+                }
+            }
+        }
+        return result;
     }
 }

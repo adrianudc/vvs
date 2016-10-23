@@ -14,10 +14,18 @@ import util.servidor.BaseHandler;
  *
  */
 public class BajaHandler extends BaseHandler {
-    
+
+    /**
+     * Servidor.
+     */
     private TokenServidor servidor;
 
-    public BajaHandler(TokenServidor servidor) {
+    /**
+     * Constructor.
+     *
+     * @param servidor -
+     */
+    public BajaHandler(final TokenServidor servidor) {
         this.servidor = servidor;
     }
 

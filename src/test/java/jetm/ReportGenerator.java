@@ -63,6 +63,9 @@ public class ReportGenerator {
         monitor.stop();
     }
 
+    /**
+     * Executes emisora tests.
+     */
     private void executeEmisoraTests() {
         EmisoraTest emisoraTest = new EmisoraTest();
 
@@ -71,6 +74,9 @@ public class ReportGenerator {
         emisoraTest.testEliminarContenido();
     }
 
+    /**
+     * Executes anuncios tests.
+     */
     private void executeAnuncioTests() {
         AnuncioTest anuncioTest = new AnuncioTest();
 
@@ -78,6 +84,9 @@ public class ReportGenerator {
         anuncioTest.testBuscar();
     }
 
+    /**
+     * Executes cancion tests.
+     */
     private void executeCancionTests() {
         CancionTest cancionTest = new CancionTest();
 
@@ -85,6 +94,11 @@ public class ReportGenerator {
         cancionTest.testObtenerListaReproduccion();
     }
 
+    /**
+     * Executes servidor tests.
+     *
+     * @throws IOException -
+     */
     private void executeServidorTests() throws IOException {
         ServidorTest servidorTest = new ServidorTest();
 

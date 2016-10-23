@@ -5,7 +5,7 @@ import modelo.token.Token;
 /**
  *
  */
-public class TokenUtil {
+public abstract class TokenUtil {
 
     /**
      *
@@ -25,7 +25,7 @@ public class TokenUtil {
      * @param token a incrementar
      * @param incremento valor del incremento
      */
-    public static void incrementarContador(final Token token, final int incremento) {
+    private static void incrementarContador(final Token token, final int incremento) {
         token.setContador(token.getContador() + incremento);
     }
 

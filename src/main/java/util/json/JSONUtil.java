@@ -1,19 +1,22 @@
 package util.json;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.util.List;
-
 /**
  *
  */
-public class JSONUtil {
+public abstract class JSONUtil {
 
+    /**
+     * Json object mapper.
+     */
     private static ObjectMapper mapper;
 
     static {

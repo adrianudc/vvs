@@ -25,27 +25,27 @@ public class EmisoraTest {
     /**
      * The Emisora.
      */
-    Emisora emisora;
+    private Emisora emisora;
 
     /**
      * The Cancion.
      */
-    Cancion cancion;
+    private Cancion cancion;
 
     /**
      * The Cancion 2.
      */
-    Cancion cancion2;
+    private Cancion cancion2;
 
     /**
      * The Anuncio.
      */
-    Anuncio anuncio;
+    private Anuncio anuncio;
 
     /**
      * The Resultados buscados.
      */
-    List<Contenido> resultadosBuscados;
+    private List<Contenido> resultadosBuscados;
 
     /**
      * JETM Monitor to check performance.

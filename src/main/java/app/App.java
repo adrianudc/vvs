@@ -6,7 +6,7 @@ import modelo.servidor.impl.ServidorImpl;
 /**
  *
  */
-public class App {
+public abstract class App {
 
     /**
      *

@@ -22,7 +22,7 @@ public class CancionTest {
     /**
      * The Cancion.
      */
-    public Cancion cancion = new Cancion("CancionPrueba", 180);
+    private Cancion cancion = new Cancion("CancionPrueba", 180);
 
     /**
      * JETM Monitor to check performance.
