@@ -28,7 +28,6 @@ public class AnuncioTest {
      */
     @Test
     public void testObtenerListaReproduccion() {
-
         List<Contenido> listaEsperada = Lists.newArrayList();
         listaEsperada.add(anuncio);
         assertEquals(listaEsperada, anuncio.obtenerListaReproduccion());

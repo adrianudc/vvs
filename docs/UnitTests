@@ -4,93 +4,131 @@
 # Unidad: Contenido (Anuncio)
 # Función: Lista de reproducción
 # Motivación: Comprueba que las listas de reproducción se obtienen correctamente
+# Valores entrada: -
+# Valores salida: Lista de reproducción
 
 # Codigo prueba: PR-UN-002
 # Unidad: Contenido (Anuncio)
 # Función: Buscar
 # Motivación: Comprueba que el metodo buscar devuelve una lista con el propio elemento si la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
+# Valores entrada: Cadena que representa el nombre del contenido
+# Valores salida: Lista de reproducción que contiene los elementos encontrados
 
 # Codigo prueba: PR-UN-003
 # Unidad: Contenido (Canción)
 # Función: Lista de reproducción
 # Motivación: Comprueba que el metodo obtenerListaReproduccion devuelve correctamente la lista conteniendo al propio elemento.
+# Valores entrada: -
+# Valores salida: Lista de reproducción
 
 # Codigo prueba: PR-UN-004
 # Unidad: Contenido (Canción)
 # Función: Buscar
 # Motivación: Comprueba que el metodo buscar devuelve una lista con el propio elemento si la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
+# Valores entrada: Cadena que representa el nombre del contenido
+# Valores salida: Lista de reproducción que contiene los elementos encontrados
 
 # Codigo prueba: PR-UN-005
 # Unidad: Contenido (Emisora)
 # Función: Agregar
 # Motivación: Prueba el metodo de agregar contenido, comprobando que la duracion se suma correctamente y que los elementos se insertan en las posiciones adecuadas.
+# Valores entrada: Contenido a agregar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-006
 # Unidad: Contenido (Emisora)
 # Función: Buscar
 # Motivación: Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene la cadena que se pasa o lista vacia si ninguno la contiene.
+# Valores entrada: Cadena que representa el nombre del contenido
+# Valores salida: Lista de reproducción que contiene los elementos encontrados
 
 # Codigo prueba: PR-UN-007
 # Unidad: Contenido (Emisora)
 # Función: Eliminar
 # Motivación: Prueba el metodo eliminar, comprobando que se resta correctamente la duracion de la Emisora y que los elementos se eliminan adecuadamente.
+# Valores entrada: Contenido a eliminar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-008
 # Unidad: Servidor
 # Función: Alta
 # Motivación: Prueba que el servidor responde un 404 para urls que no maneje.
+# Valores entrada: Url del servidor
+# Valores salida: Respuesta HTTP/404 Not found
 
 # Codigo prueba: PR-UN-009
 # Unidad: Servidor
 # Función: Alta
 # Motivación: Comprueba que el servidor dé de alta un cliente correctamente.
+# Valores entrada: Url del servidor
+# Valores salida: Token de sesión
 
 # Codigo prueba: PR-UN-010
 # Unidad: Servidor
 # Función: Alta
 # Motivación: Comprueba que el servidor dé de baja un cliente correctamente.
+# Valores entrada: Url del servidor y token de sesión
+# Valores salida: -
 
 # Codigo prueba: PR-UN-011
 # Unidad: Servidor
 # Función: Alta
 # Motivación: Comprueba que el servidor responde un error si se solicita una baja sin especificar un token en los headers.
+# Valores entrada: Url del servidor
+# Valores salida: Respuesta HTTP/404 Bad request
 
 # Codigo prueba: PR-UN-012
 # Unidad: Servidor
 # Función: Agregar contenido
 # Motivación: Comprueba que el servidor agregar contenido correctamente.
+# Valores entrada: Url del servidor, token de sesión y contenido a agregar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-013
 # Unidad: Servidor
 # Función: Agregar contenido
 # Motivación: Comprueba que el servidor responde con un error si se intenta agergar contenido sin un token.
+# Valores entrada: Url del servidor y contenido a agregar
+# Valores salida: Respuesta HTTP/404 Bad request
 
 # Codigo prueba: PR-UN-014
 # Unidad: Servidor
 # Función: Buscar
 # Motivación: Comprueba que el servidor busca contenido sin agregar publicidad cuando se envía un token válido que no haya caducado.
+# Valores entrada: Url del servidor, token de sesión y contenido a buscar
+# Valores salida: Lista de contenido sin contener publicidad
 
 # Codigo prueba: PR-UN-015
 # Unidad: Servidor
 # Función: Buscar
 # Motivación: Comprueba que el servidor busca contenido con publicidad si no se envía token.
+# Valores entrada: Url del servidor y contenido a buscar
+# Valores salida: Lista de contenido que contiene publicidad
 
 # Codigo prueba: PR-UN-016
 # Unidad: Servidor
 # Función: Agregar
 # Motivación: Validar el nuevo estado del servidor una vez se ha agregado contenido nuevo.
+# Valores entrada: Url del servidor, token de sesión y contenido a agregar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-017
 # Unidad: Servidor
 # Función: Agregar
 # Motivación: Validar el nuevo estado del servidor una vez se ha eliminado contenido.
+# Valores entrada: Url del servidor, token de sesión y contenido a eliminar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-018
 # Unidad: Servidor (Backup)
 # Función: Agregar
 # Motivación: Validar el nuevo estado de los servidores backups que estén corriendo después de agregarles contenido nuevo.
+# Valores entrada: Url del servidor de backup, token de sesión y contenido a agregar
+# Valores salida: -
 
 # Codigo prueba: PR-UN-019
 # Unidad: Servidor
 # Función: Buscar
 # Motivación: Comprueba que el servidor busca contenido con publicidad cuando se envía en los headers un token caducado.
+# Valores entrada: Url del servidor de backup, token de sesión y contenido a eliminar
+# Valores salida: -
