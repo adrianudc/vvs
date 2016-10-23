@@ -14,6 +14,24 @@ apply plugin: 'checkstyle'
 
 sourceCompatibility = 1.7
 
+test {
+    testLogging {
+        // set options for log level LIFECYCLE
+        events "passed", "skipped", "failed"
+        exceptionFormat "short"
+
+        // set options for log level DEBUG
+        debug {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+        }
+
+        // remove standard output/error logging from --info builds
+        // by assigning only 'failed' and 'skipped' events
+        info.events = ["failed", "skipped"]
+    }
+}
+
 buildscript {
     repositories {
         mavenLocal()
