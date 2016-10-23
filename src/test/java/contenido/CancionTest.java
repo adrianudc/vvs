@@ -1,11 +1,13 @@
 package contenido;
 
-import com.google.common.collect.Lists;
-import modelo.contenido.Contenido;
-import modelo.contenido.impl.track.Cancion;
+import java.util.List;
+
 import org.junit.Test;
 
-import java.util.List;
+import com.google.common.collect.Lists;
+
+import modelo.contenido.Contenido;
+import modelo.contenido.impl.track.Cancion;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -20,6 +22,7 @@ public class CancionTest {
     private Cancion cancion = new Cancion("CancionPrueba", 180);
 
     /**
+     * Codigo de prueba: PR-UN-003
      * Comprueba que el metodo obtenerListaReproduccion devuelve correctamente
      * la lista conteniendo al propio elemento.
      */
@@ -31,6 +34,7 @@ public class CancionTest {
     }
 
     /**
+     * Codigo de prueba: PR-UN-004
      * Comprueba que el metodo buscar devuelve una lista con el propio elemento si
      * la cadena que se le pasa es correcta y una lista vacia cuando no lo es.
      */

@@ -1,14 +1,16 @@
 package contenido;
 
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
 import com.google.common.collect.Lists;
+
 import modelo.contenido.Contenido;
 import modelo.contenido.impl.emisora.Emisora;
 import modelo.contenido.impl.track.Anuncio;
 import modelo.contenido.impl.track.Cancion;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.List;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -56,6 +58,7 @@ public class EmisoraTest {
     }
 
     /**
+     * Codigo de prueba: PR-UN-005
      * Prueba el metodo de agregar contenido, comprobando que la duracion
      * se suma correctamente y que los elementos se insertan en las posiciones
      * adecuadas.
@@ -82,6 +85,7 @@ public class EmisoraTest {
     }
 
     /**
+     * Codigo de prueba: PR-UN-006
      * Prueba el metodo buscar, comprobando que devuelve todos los Contenidos cuyo titulo contiene
      * la cadena que se pasa o lista vacia si ninguno la contiene.
      */
@@ -97,6 +101,7 @@ public class EmisoraTest {
     }
 
     /**
+     * Codigo de prueba: PR-UN-007
      * Prueba el metodo eliminar, comprobando que se resta correctamente la duracion
      * de la Emisora y que los elementos se eliminan adecuadamente.
      */
